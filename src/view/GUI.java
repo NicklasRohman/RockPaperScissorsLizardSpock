@@ -5,22 +5,11 @@ import java.util.List;
 
 import controller.GamePlay;
 import javafx.application.Application;
-import javafx.geometry.HPos;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.ButtonPressedEvent;
 import model.ButtonPressedListener;
@@ -28,8 +17,8 @@ import model.ButtonPressedListener;
 public class GUI extends Application {
 	GamePlay gamePlay = GamePlay.getInstance();
 
-	final int WINDOW_WIDTH = 1200;	
-	final int WINDOW_HEIGHT = 800;
+	final int WINDOW_WIDTH = 1600;	
+	final int WINDOW_HEIGHT = 900;
 	Button rock;
 	Button paper;
 	Button scissors;
@@ -109,18 +98,9 @@ public class GUI extends Application {
 			pane.setAlignment(Pos.CENTER);
 			pane.setHgap(10);
 			pane.setVgap(10);
-			pane.setGridLinesVisible(true);
+			//pane.setGridLinesVisible(true);
 			pane.setMinSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 	        pane.setPrefSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-
-	        ColumnConstraints leftCol = new ColumnConstraints();
-	        leftCol.setHalignment(HPos.RIGHT);
-	        leftCol.setHgrow(Priority.NEVER);
-
-	        ColumnConstraints rightCol = new ColumnConstraints();
-	        rightCol.setHgrow(Priority.ALWAYS);
-
-	        pane.getColumnConstraints().addAll(leftCol, rightCol);
 
 	        //grid system (column, row)
 			pane.add(rock,1,1);
@@ -131,37 +111,37 @@ public class GUI extends Application {
 			pane.add(help, 6, 6);
 			pane.add(quit, 7, 6);
 			
-			rock.getStyleClass().add("button");
+			rock.getStyleClass().add("buttonClass");
 			rock.getStyleClass().add("buttonSize");
 			rock.getStyleClass().add("rock");
 			rock.setOnAction(e -> pressButton(0));
 
-			paper.getStyleClass().add("button");
+			paper.getStyleClass().add("buttonClass");
 			paper.getStyleClass().add("buttonSize");
 			paper.getStyleClass().add("paper");
 			paper.setOnAction(e -> pressButton(1));
 
-			scissors.getStyleClass().add("button");
+			scissors.getStyleClass().add("buttonClass");
 			scissors.getStyleClass().add("buttonSize");
 			scissors.getStyleClass().add("scissors");
 			scissors.setOnAction(e -> pressButton(2));
 
-			lizard.getStyleClass().add("button");
+			lizard.getStyleClass().add("buttonClass");
 			lizard.getStyleClass().add("buttonSize");
 			lizard.getStyleClass().add("lizard");
 			lizard.setOnAction(e -> pressButton(3));
 
-			spock.getStyleClass().add("button");
+			spock.getStyleClass().add("buttonClass");
 			spock.getStyleClass().add("buttonSize");
 			spock.getStyleClass().add("spock");
 			spock.setOnAction(e -> pressButton(4));
 
-			help.getStyleClass().add("button");
+			help.getStyleClass().add("buttonClass");
 			help.getStyleClass().add("help");
 			help.getStyleClass().add("mainButton");
 			help.setOnAction(e -> pressButton(5));
 
-			quit.getStyleClass().add("button");
+			quit.getStyleClass().add("buttonClass");
 			quit.getStyleClass().add("quit");
 			quit.getStyleClass().add("mainButton");
 			quit.setOnAction(e -> pressButton(6));
@@ -183,7 +163,8 @@ public class GUI extends Application {
 	
 	
 	public void helpButton(){
-		
+		HelpBox help = HelpBox.getInstance();
+		help.display();
 	}
 	
 	public void quitButton() {
