@@ -11,9 +11,13 @@ public class DataBas {
 	Connection conn;
 	Statement stmt;
 	ResultSet rs;
-	
-	public static DataBas db = null;
-	
+
+	private String url = "jdbc:h2:tcp://localhost:9092/";
+	private String user = "Nicklas";
+	private String pass = "Rohman";
+
+	public static DataBas databas = null;
+
 	private DataBas() {
 	}
 
@@ -21,49 +25,78 @@ public class DataBas {
 	 * the method to get a instance of the class
 	 */
 	public static DataBas getInstance() {
-		if (db == null) {
-			db = new DataBas();
+		if (databas == null) {
+			databas = new DataBas();
 		}
-		return db;
+		return databas;
 	}
-	
+
 	public void startDB() {
-	
+
 		try {
 			Class.forName("org.h2.Driver");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		try {
-			conn = DriverManager.getConnection("jdbc:h2:tcp://localhost:9092/"+System.getProperty("user.home")+"/test","Nicklas","Rohman");
 
-			stmt = conn.createStatement();
+		driverManagerSetup();
+		try {
 			rs = stmt.executeQuery("select * from test");
 
-			while(rs.next()){
+			while (rs.next()) {
 				System.out.println(rs.getString("name"));
+			}
+			
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void createPlayer(String newPlayerName) {
+
+		try {
+			driverManagerSetup();
+			System.out.println("INSERT INTO PLAYERS VALUES("+newPlayerName+",0,0,0);");
+			//stmt.executeUpdate("INSERT INTO PLAYERS VALUES("+newPlayerName+",0,0,0);");
+			//rs = stmt.executeQuery("INSERT INTO PLAYERS ('name','win','lose','draw' ) VALUES("+newPlayerName+",0,0,0);");
+
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void lookForPlayer(String name) {
+
+		try {
+			driverManagerSetup();
+			rs = stmt.executeQuery("select * from players");
+
+			while (rs.next()) {
+				if(rs.getString("name").equalsIgnoreCase(name)){
+					System.out.println("player "+rs.getString("name")+" exist");
+				}
+				else{
+					System.out.println("Creat new player");
+					createPlayer(name);
+				}
 			}
 			conn.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.err.println("" + e.getMessage());
+			System.err.println("" + e.getErrorCode());
+			System.err.println("" + e.getSQLState());
 		}
-		
 	}
-	
-	public void createPlayer(String name){
-		
-		try {
-			conn = DriverManager.getConnection("jdbc:h2:tcp://localhost:9092/"+System.getProperty("user.home")+"/test","Nicklas","Rohman");
-			stmt = conn.createStatement();
-			//rs = stmt.executeQuery("INSERT INTO Players VALUES("+name+",0,0,0);");
 
-			conn.close();
+	private void driverManagerSetup() {
+		try {
+			conn = DriverManager.getConnection(url + System.getProperty("user.home") + "/test", user, pass);
+			stmt = conn.createStatement();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
 	}
-	
-	
+
 }

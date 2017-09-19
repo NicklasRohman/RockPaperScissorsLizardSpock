@@ -1,12 +1,8 @@
 package controller;
 
-import model.Ai;
 import model.ButtonPressedEvent;
 import model.ButtonPressedListener;
-import model.Human;
-import model.PlayerFactory;
 import view.GUI;
-import view.NameBox;
 
 public class GamePlay implements ButtonPressedListener {
 
@@ -29,15 +25,10 @@ public class GamePlay implements ButtonPressedListener {
 	public static void main(String[] args) {
 		DataBas databas = DataBas.getInstance();
 		databas.startDB();
-		//
-		// Ai ai = playerFactory.getPlayer("Ai");
-		// Human human = playerFactory.getPlayer(name);
-
+		
 		gui = new GUI();
 		gui.startGui(args);
-
-		PlayerFactory playerFactory = new PlayerFactory();
-
+		
 	}
 
 	@Override

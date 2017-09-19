@@ -1,9 +1,7 @@
 package model;
 
 public class Human implements playerInterface{
-
-	public Human() {
-	}
+	String name;
 
 	@Override
 	public void createPlayer(String name) {

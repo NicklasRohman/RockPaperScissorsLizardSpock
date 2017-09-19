@@ -11,7 +11,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import model.PlayerFactory;
 
 /**
  * @author Nicklas Its a singleton class Handles GUI for the popup window when
@@ -60,10 +59,9 @@ public class NameBox {
 		Button okButton = new Button("Ok");
 		TextField nameInput = new TextField();
 		nameInput.setMaxWidth(300);
-		//Player player = new Player();
+
 		okButton.setOnAction(e -> {
 
-			//player.setName(nameInput.getText());
 			alertWindow.close();
 
 		});
@@ -87,6 +85,6 @@ public class NameBox {
 		alertWindow.setScene(scen);
 		alertWindow.showAndWait();
 
-		return "";//p.getName();
+		return nameInput.getText();
 	}
 }
