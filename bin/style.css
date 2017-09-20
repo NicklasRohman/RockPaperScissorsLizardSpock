@@ -1,0 +1,78 @@
+.buttonSize {
+	-fx-pref-width: 250px;
+	-fx-pref-height: 250px;
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: cover, auto;
+	-fx-background-radius: 10px;
+	-fx-background-insets: -20, -10;
+}
+
+.mainButton {
+	-fx-pref-width: 200px;
+	-fx-pref-height: 100px;
+	-fx-background-radius: 10px;
+	-fx-font-size: 25px;
+	}
+
+.buttonClass {
+	-fx-background-color: lightBlue;
+	-fx-padding: 50;
+	-fx-spacing: 10;
+}
+
+.pane {
+	-fx-background-color: #EEE;
+}
+
+.rock {
+	-fx-background-image: url('Pic/rock.png');
+}
+
+.paper {
+	-fx-background-image: url('Pic/paper.png');
+}
+
+.scissors {
+	-fx-background-image: url('Pic/scissors.png');
+}
+
+.lizard {
+	-fx-background-image: url('Pic/lizard.png');
+}
+
+.spock {
+	-fx-background-image: url('Pic/spock.png');
+}
+
+
+
+
+/*ConfirmBoxers style*/
+
+.borderPane {
+	-fx-font-size: 16px;
+	-fx-background-color: #deb887;
+	-fx-border-color: #050505;
+	-fx-border-style: solid;
+	-fx-border-width: 2;
+	-fx-border-radius: 10;
+	-fx-background-insets: 10;
+}
+
+.bottomLayout {
+	-fx-padding: 50;
+	-fx-spacing: 10;
+}
+
+
+.helpLabel {
+	-fx-background-image: url('Pic/help.jpg');
+	-fx-pref-width: 900px;
+	-fx-pref-height: 700px;
+	-fx-background-color: skyblue, derive(skyblue, 25%);
+	-fx-background-insets: -20, -10;
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: cover, auto;
+}

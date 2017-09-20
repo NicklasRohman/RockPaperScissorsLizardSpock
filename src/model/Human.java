@@ -1,6 +1,6 @@
 package model;
 
-public class Human implements playerInterface{
+public class Human implements PlayerInterface{
 	String name;
 
 	@Override

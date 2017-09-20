@@ -14,6 +14,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import model.ButtonPressedEvent;
 import model.ButtonPressedListener;
+import model.PlayerInterface;
 
 public class GUI extends Application {
 	GamePlay gamePlay = GamePlay.getInstance();
@@ -27,7 +28,6 @@ public class GUI extends Application {
 	Button lizard;
 	Button spock;
 	Button help;
-	Button quit;
 	List<Button> buttons;
 
 	Stage window;
@@ -59,7 +59,6 @@ public class GUI extends Application {
 		buttons.add(lizard);
 		buttons.add(spock);
 		buttons.add(help);
-		buttons.add(quit);
 
 		return buttons;
 	}
@@ -88,7 +87,6 @@ public class GUI extends Application {
 			lizard = new Button();
 			spock = new Button();
 			help = new Button("Help");
-			quit = new Button("Quit");
 			playerName = new Label("Player Name");
 			playerWin = new Label("Wins");
 			playerTotalMatches = new Label("Total");
@@ -112,7 +110,6 @@ public class GUI extends Application {
 			pane.add(playerWin, 2, 6);
 			pane.add(playerTotalMatches, 3, 6);
 			pane.add(help, 6, 7);
-			pane.add(quit, 7, 7);
 			
 			rock.getStyleClass().addAll("buttonClass","buttonSize","rock");
 			rock.setOnAction(e -> pressButton(0));
@@ -132,9 +129,6 @@ public class GUI extends Application {
 			help.getStyleClass().addAll("buttonClass","mainButton");
 			help.setOnAction(e -> pressButton(5));
 
-			quit.getStyleClass().addAll("buttonClass","mainButton");
-			quit.setOnAction(e -> pressButton(6));
-
 			Scene scene = new Scene(pane, WINDOW_WIDTH , WINDOW_HEIGHT);
 			scene.getStylesheets().add("style.css");
 			window.setScene(scene);
@@ -145,6 +139,9 @@ public class GUI extends Application {
 			String name = namebox.display("Vad heter du då?");
 			databas.lookForPlayer(name);
 	
+			 
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

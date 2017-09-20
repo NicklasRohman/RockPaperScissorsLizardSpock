@@ -2,6 +2,8 @@ package controller;
 
 import model.ButtonPressedEvent;
 import model.ButtonPressedListener;
+import model.PlayerFactory;
+import model.PlayerInterface;
 import view.GUI;
 
 public class GamePlay implements ButtonPressedListener {
@@ -29,6 +31,11 @@ public class GamePlay implements ButtonPressedListener {
 		gui = new GUI();
 		gui.startGui(args);
 		
+		PlayerFactory playerFactory = new PlayerFactory();		
+		PlayerInterface ai = playerFactory.getPlayer("Ai");
+		PlayerInterface human =  playerFactory.getPlayer("Nicklas");
+		
+		
 	}
 
 	@Override
@@ -38,30 +45,15 @@ public class GamePlay implements ButtonPressedListener {
 
 		switch (event.getPressedButton()) {
 		case 0:
-
-			break;
-
 		case 1:
-
-			break;
-
 		case 2:
-
-			break;
-
 		case 3:
-
-			break;
 		case 4:
 
 			break;
 
 		case 5:
 			gui.helpButton();
-			break;
-
-		case 6:
-			gui.quitButton();
 			break;
 
 		default:

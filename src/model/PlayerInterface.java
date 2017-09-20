@@ -1,6 +1,6 @@
 package model;
 
-public interface playerInterface {
+public interface PlayerInterface {
 	void createPlayer(String name);
 	
 }

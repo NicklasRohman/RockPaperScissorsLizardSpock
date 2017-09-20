@@ -2,7 +2,7 @@ package model;
 
 import controller.DataBas;
 
-public class Ai implements playerInterface{
+public class Ai implements PlayerInterface{
 
 	public Ai() {
 	}

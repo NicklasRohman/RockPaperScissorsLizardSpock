@@ -15,4 +15,3 @@ Dag 12:
 
 
 Ska göras:
-Quit funktionen får ett error om man avslutar med quit knappen men inte med X knappen.

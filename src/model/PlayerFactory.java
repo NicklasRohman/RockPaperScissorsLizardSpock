@@ -6,7 +6,7 @@ public class PlayerFactory {
 	}
 	
 	
-	public playerInterface getPlayer(String playerName) {
+	public PlayerInterface getPlayer(String playerName) {
 		if (playerName == null) {
 			return null;
 		}

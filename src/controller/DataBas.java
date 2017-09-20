@@ -57,10 +57,8 @@ public class DataBas {
 
 		try {
 			driverManagerSetup();
-			System.out.println("INSERT INTO PLAYERS VALUES("+newPlayerName+",0,0,0);");
-			//stmt.executeUpdate("INSERT INTO PLAYERS VALUES("+newPlayerName+",0,0,0);");
-			//rs = stmt.executeQuery("INSERT INTO PLAYERS ('name','win','lose','draw' ) VALUES("+newPlayerName+",0,0,0);");
-
+			stmt.executeUpdate("INSERT INTO PLAYERS VALUES('"+newPlayerName+"',0,0,0);");
+			
 			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -79,7 +77,7 @@ public class DataBas {
 				}
 				else{
 					System.out.println("Creat new player");
-					createPlayer(name);
+		//			createPlayer(name);
 				}
 			}
 			conn.close();
