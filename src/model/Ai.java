@@ -1,16 +1,12 @@
 package model;
 
-import controller.DataBas;
-
-public class Ai implements PlayerInterface{
-
-	public Ai() {
+public class Ai extends Player implements AiAlgoritms{
+	
+	String name;
+	String aiAnswer;
+	
+	public Ai(String ai) {
+		this.name = ai;
 	}
 	
-	@Override
-	public void createPlayer(String name) {
-//		DataBas db = DataBas.getInstance();
-//		db.createPlayer("Ai");
-		System.out.println("Skapat en AI");
-	}
 }

@@ -20,7 +20,7 @@ import model.PlayerInterface;
 public class GUI extends Application {
 	GamePlay gamePlay = GamePlay.getInstance();
 
-	final int WINDOW_WIDTH = 1600;	
+	final int WINDOW_WIDTH = 1600;
 	final int WINDOW_HEIGHT = 900;
 
 	Button rock;
@@ -35,7 +35,7 @@ public class GUI extends Application {
 	Label playerName;
 	Label playerWin;
 	Label playerTotalMatches;
-	
+
 	private List<ButtonPressedListener> buttonPressedListeners = new ArrayList<>();
 
 	public void addButtonPressedListener(ButtonPressedListener buttonPressedListener) {
@@ -76,11 +76,11 @@ public class GUI extends Application {
 
 		try {
 			window = primaryStage;
-			window.setOnCloseRequest(e->{
+			window.setOnCloseRequest(e -> {
 				e.consume();
-				quitButton();	
+				quitButton();
 			});
-			
+
 			addButtonPressedListener(gamePlay);
 			rock = new Button();
 			paper = new Button();
@@ -91,7 +91,7 @@ public class GUI extends Application {
 			playerName = new Label("Player Name");
 			playerWin = new Label("Wins");
 			playerTotalMatches = new Label("Total");
-			
+
 			GridPane pane = new GridPane();
 			pane.getStyleClass().add("pane");
 			pane.setAlignment(Pos.CENTER);
@@ -99,11 +99,11 @@ public class GUI extends Application {
 			pane.setVgap(10);
 			pane.setGridLinesVisible(true);
 			pane.setMinSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-	        pane.setPrefSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+			pane.setPrefSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 
-	        //grid system (column, row)
-			pane.add(rock,1,1);
-			pane.add(paper,3,1);
+			// grid system (column, row)
+			pane.add(rock, 1, 1);
+			pane.add(paper, 3, 1);
 			pane.add(scissors, 5, 1);
 			pane.add(lizard, 2, 3);
 			pane.add(spock, 4, 3);
@@ -111,50 +111,49 @@ public class GUI extends Application {
 			pane.add(playerWin, 2, 6);
 			pane.add(playerTotalMatches, 3, 6);
 			pane.add(help, 6, 7);
-			
-			rock.getStyleClass().addAll("buttonClass","buttonSize","rock");
+
+			rock.getStyleClass().addAll("buttonClass", "buttonSize", "rock");
 			rock.setOnAction(e -> pressButton(0));
 
-			paper.getStyleClass().addAll("buttonClass","buttonSize","paper");
+			paper.getStyleClass().addAll("buttonClass", "buttonSize", "paper");
 			paper.setOnAction(e -> pressButton(1));
 
-			scissors.getStyleClass().addAll("buttonClass","buttonSize","scissors");
+			scissors.getStyleClass().addAll("buttonClass", "buttonSize", "scissors");
 			scissors.setOnAction(e -> pressButton(2));
 
-			lizard.getStyleClass().addAll("buttonClass","buttonSize","lizard");
+			lizard.getStyleClass().addAll("buttonClass", "buttonSize", "lizard");
 			lizard.setOnAction(e -> pressButton(3));
 
-			spock.getStyleClass().addAll("buttonClass","buttonSize","spock");
+			spock.getStyleClass().addAll("buttonClass", "buttonSize", "spock");
 			spock.setOnAction(e -> pressButton(4));
 
-			help.getStyleClass().addAll("buttonClass","mainButton");
+			help.getStyleClass().addAll("buttonClass", "mainButton");
 			help.setOnAction(e -> pressButton(5));
 
-			Scene scene = new Scene(pane, WINDOW_WIDTH , WINDOW_HEIGHT);
+			Scene scene = new Scene(pane, WINDOW_WIDTH, WINDOW_HEIGHT);
 			scene.getStylesheets().add("style.css");
 			window.setScene(scene);
 			window.show();
 
-			DataBas databas = DataBas.getInstance();
-			NameBox namebox= NameBox.getInstance();
-			String name = namebox.display("Vad heter du då?");
-			databas.lookForPlayer(name);
-			
+			gamePlay.startGame();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public void helpButton(){
+
+	public void helpButton() {
 		HelpBox help = HelpBox.getInstance();
 		help.display();
 	}
-	
+
 	public void quitButton() {
-/*		ConfirmBox confirmBox = ConfirmBox.getInstance();
-		Boolean answer = confirmBox.display("Are You Sure???");
-		if (answer) {
-*/			window.close();
+		ConfirmBox confirmBox = ConfirmBox.getInstance();
+//		Boolean answer = confirmBox.display("Are You Sure???");
+//		if (answer) {
+//			DataBas databas = DataBas.getInstance();
+//			databas.savePlayer();
+			window.close();
 //		}
 	}
 

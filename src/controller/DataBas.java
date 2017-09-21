@@ -6,8 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import model.Human;
+
 public class DataBas {
-	
+
+	Human human;
 	Connection conn;
 	Statement stmt;
 	ResultSet rs;
@@ -31,33 +34,12 @@ public class DataBas {
 		return databas;
 	}
 
-	public void startDB() {
+	private void createPlayer(String newPlayerName) {
 
-		try {
-			Class.forName("org.h2.Driver");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-
-		driverManagerSetup();
-		try {
-			rs = stmt.executeQuery("select * from players");
-
-			while (rs.next()) {
-				System.out.println(rs.getString("name"));
-			}
-
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public void createPlayer(String newPlayerName) {
-		
 		try {
 			driverManagerSetup();
 			stmt.executeUpdate("INSERT INTO PLAYERS VALUES('" + newPlayerName + "',0,0,0);");
+
 			conn.close();
 
 		} catch (SQLException e) {
@@ -66,23 +48,22 @@ public class DataBas {
 	}
 
 	public void lookForPlayer(String name) {
-	//	
-//		PlayerFactory playerFactory = new PlayerFactory();		
-//		PlayerInterface ai = playerFactory.getPlayer("Ai");
-//		PlayerInterface human =  playerFactory.getPlayer("Nicklas");
 		
 		try {
 			driverManagerSetup();
 			rs = stmt.executeQuery("select * from players");
-			
+			boolean createNewPlayer = true;
 			while (rs.next()) {
 				if (rs.getString("name").equalsIgnoreCase(name)) {
 					System.out.println("player " + rs.getString("name") + " exist");
-					
-				} else {
-					createPlayer(name);
+					loadPlayer(name);
+					createNewPlayer = false;
 					break;
 				}
+			}
+
+			if (createNewPlayer) {
+				createPlayer(name);
 			}
 
 			conn.close();
@@ -93,6 +74,40 @@ public class DataBas {
 		}
 	}
 
+	private void loadPlayer(String name) {
+		
+		driverManagerSetup();
+		try {
+			rs = stmt.executeQuery("select * from players");
+			human = new Human();	 
+			
+			while (rs.next()) {
+				if (rs.getString("name").equalsIgnoreCase(name)) {
+	            human.setName(name); 
+	            human.setWin(rs.getInt("win"));
+	            human.setLose(rs.getInt("lose"));
+	            human.setDraw(rs.getInt("lose"));
+	            System.out.println("player " +human.getName() +" har "+human.getWin() +" vinster "+human.getLose()+" förluster "+human.getDraw()+" oavgjorda matcher");
+				break;
+				}
+			
+			
+			conn.close();
+		}}catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void savePlayer() {
+		driverManagerSetup();
+		human = new Human();
+			try {
+				rs = stmt.executeQuery("UPDATE players set win =" + human.getWin()+",lose = "+ human.getLose()+",draw = "+human.getDraw()+"where name = " + human.getName());
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}		
+	}
+
 	private void driverManagerSetup() {
 		try {
 			conn = DriverManager.getConnection(url + System.getProperty("user.home") + "/test", user, pass);
@@ -101,5 +116,4 @@ public class DataBas {
 			e.printStackTrace();
 		}
 	}
-
 }

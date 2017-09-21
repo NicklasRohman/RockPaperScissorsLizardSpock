@@ -3,18 +3,18 @@ package model;
 import java.util.Random;
 
 public interface AiAlgoritms {
-	Player player = new Player();
+	Human humenPlayer = new Human();
 
 	public class Answer {
 
 		// How to get the highest value of 5
 		public String theAnswer() {
 
-			 int rock = player.getAnswerRock();
-			 int scissors = player.getAnswerScissors();
-			 int paper = player.getAnswerPaper();
-			 int lizard = player.getAnswerLizard();
-			 int spock = player.getAnswerSpock();
+			 int rock = humenPlayer.getAnswerRock();
+			 int scissors = humenPlayer.getAnswerScissors();
+			 int paper = humenPlayer.getAnswerPaper();
+			 int lizard = humenPlayer.getAnswerLizard();
+			 int spock = humenPlayer.getAnswerSpock();
 
 			if ((rock > scissors) && (rock > paper) && (rock > lizard) && (rock > spock)) {
 				System.out.println(mostRock());
@@ -33,7 +33,7 @@ public interface AiAlgoritms {
 
 		private String mostRock() {
 
-			if (player.getAnswerPaper() == player.getAnswerSpock()) {
+			if (humenPlayer.getAnswerPaper() == humenPlayer.getAnswerSpock()) {
 				switch (randomMethod(1, 2)) {
 				case 1:
 					return "paper";
@@ -43,7 +43,7 @@ public interface AiAlgoritms {
 					break;
 				}
 			}
-			if (player.getAnswerPaper() > player.getAnswerSpock()) {
+			if (humenPlayer.getAnswerPaper() > humenPlayer.getAnswerSpock()) {
 				return "paper";
 			} else {
 				return "spock";
@@ -51,7 +51,7 @@ public interface AiAlgoritms {
 		}
 
 		private String mostPaper() {
-			if (player.getAnswerScissors() == player.getAnswerLizard()) {
+			if (humenPlayer.getAnswerScissors() == humenPlayer.getAnswerLizard()) {
 				switch (randomMethod(1, 2)) {
 				case 1:
 					return "scissors";
@@ -62,7 +62,7 @@ public interface AiAlgoritms {
 				}
 			}
 
-			if (player.getAnswerScissors() > player.getAnswerLizard()) {
+			if (humenPlayer.getAnswerScissors() > humenPlayer.getAnswerLizard()) {
 				return "scissors";
 			} else {
 				return "lizard";
@@ -71,7 +71,7 @@ public interface AiAlgoritms {
 		}
 
 		private String mostSpock() {
-			if (player.getAnswerLizard() == player.getAnswerPaper()) {
+			if (humenPlayer.getAnswerLizard() == humenPlayer.getAnswerPaper()) {
 				switch (randomMethod(1, 2)) {
 				case 1:
 					return "lizard";
@@ -82,7 +82,7 @@ public interface AiAlgoritms {
 				}
 			}
 
-			if (player.getAnswerLizard() > player.getAnswerPaper()) {
+			if (humenPlayer.getAnswerLizard() > humenPlayer.getAnswerPaper()) {
 				return "lizard";
 			} else {
 				return "paper";
@@ -90,7 +90,7 @@ public interface AiAlgoritms {
 		}
 
 		private String mostLizard() {
-			if (player.getAnswerRock() == player.getAnswerScissors()) {
+			if (humenPlayer.getAnswerRock() == humenPlayer.getAnswerScissors()) {
 				switch (randomMethod(1, 2)) {
 				case 1:
 					return "rock";
@@ -100,7 +100,7 @@ public interface AiAlgoritms {
 					break;
 				}
 			}
-			if (player.getAnswerRock() > player.getAnswerScissors()) {
+			if (humenPlayer.getAnswerRock() > humenPlayer.getAnswerScissors()) {
 				return "rock";
 			} else {
 				return "scissors";
@@ -109,7 +109,7 @@ public interface AiAlgoritms {
 		}
 
 		private String mostScissors() {
-			if (player.getAnswerSpock() == player.getAnswerRock()) {
+			if (humenPlayer.getAnswerSpock() == humenPlayer.getAnswerRock()) {
 				switch (randomMethod(1, 2)) {
 				case 1:
 					return "spock";
@@ -120,7 +120,7 @@ public interface AiAlgoritms {
 				}
 			}
 
-			if (player.getAnswerSpock() > player.getAnswerRock()) {
+			if (humenPlayer.getAnswerSpock() > humenPlayer.getAnswerRock()) {
 				return "spock";
 			} else {
 				return "rock";

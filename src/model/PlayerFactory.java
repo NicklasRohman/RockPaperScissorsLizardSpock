@@ -11,10 +11,10 @@ public class PlayerFactory {
 			return null;
 		}
 		if (playerName.equalsIgnoreCase("AI")) {
-			return new Ai();
+			return new Ai("Ai");
 
 		} else  {
-			return new Human();
+			return new Human(playerName);
 
 		}
 	}

@@ -5,6 +5,7 @@ import model.ButtonPressedListener;
 import model.PlayerFactory;
 import model.PlayerInterface;
 import view.GUI;
+import view.NameBox;
 
 public class GamePlay implements ButtonPressedListener {
 
@@ -25,8 +26,6 @@ public class GamePlay implements ButtonPressedListener {
 	}
 
 	public static void main(String[] args) {
-		DataBas databas = DataBas.getInstance();
-		databas.startDB();
 		
 		gui = new GUI();
 		gui.startGui(args);
@@ -40,6 +39,7 @@ public class GamePlay implements ButtonPressedListener {
 
 		switch (event.getPressedButton()) {
 		case 0:
+			
 		case 1:
 		case 2:
 		case 3:
@@ -59,4 +59,21 @@ public class GamePlay implements ButtonPressedListener {
 
 	}
 
+	public void startGame(){
+		DataBas databas = DataBas.getInstance();
+		NameBox namebox= NameBox.getInstance();
+		PlayerFactory playerFactory = new PlayerFactory();
+		
+		String name = namebox.display("Vad heter du då?");
+		databas.lookForPlayer(name);
+		
+		PlayerInterface human =  playerFactory.getPlayer(name);
+		PlayerInterface ai = playerFactory.getPlayer("Ai");
+				
+		
+		
+	}
+	
+	
+	
 }
