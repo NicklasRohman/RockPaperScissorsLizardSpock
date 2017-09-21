@@ -31,11 +31,6 @@ public class GamePlay implements ButtonPressedListener {
 		gui = new GUI();
 		gui.startGui(args);
 		
-		PlayerFactory playerFactory = new PlayerFactory();		
-		PlayerInterface ai = playerFactory.getPlayer("Ai");
-		PlayerInterface human =  playerFactory.getPlayer("Nicklas");
-		
-		
 	}
 
 	@Override

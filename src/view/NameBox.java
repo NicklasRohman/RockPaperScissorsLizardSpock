@@ -83,8 +83,10 @@ public class NameBox {
 		Scene scen = new Scene(borderPane);
 		scen.getStylesheets().add("style.css");
 		alertWindow.setScene(scen);
-		alertWindow.showAndWait();
-
-		return nameInput.getText();
+		alertWindow.showAndWait(); 
+	
+		String result = nameInput.getText().toUpperCase();
+		
+		return result;
 	}
 }

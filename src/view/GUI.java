@@ -14,6 +14,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import model.ButtonPressedEvent;
 import model.ButtonPressedListener;
+import model.PlayerFactory;
 import model.PlayerInterface;
 
 public class GUI extends Application {
@@ -138,9 +139,6 @@ public class GUI extends Application {
 			NameBox namebox= NameBox.getInstance();
 			String name = namebox.display("Vad heter du då?");
 			databas.lookForPlayer(name);
-	
-			 
-			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -153,10 +151,10 @@ public class GUI extends Application {
 	}
 	
 	public void quitButton() {
-		ConfirmBox confirmBox = ConfirmBox.getInstance();
-//		Boolean answer = confirmBox.display("Are You Sure???");
-//		if (answer) {
-			window.close();
+/*		ConfirmBox confirmBox = ConfirmBox.getInstance();
+		Boolean answer = confirmBox.display("Are You Sure???");
+		if (answer) {
+*/			window.close();
 //		}
 	}
 

@@ -2,7 +2,7 @@
 
 Dag 1: Kopplat till databas, arbetat med GUI, NameBox färdig, lite css, Quitfunktion gjord.
 Dag 2: Gjort mer css kod, Fixat färdigt helpBox knappens funktion. Märkt att inte Quit funktionen inte fungerar helt hundra.
-Dag 3:
+Dag 3: Kan nu lägga in spelare i databasen, ska fundera ut ett bättre sätt att lägga in spelare bara.
 Dag 4:
 Dag 5:
 Dag 6:

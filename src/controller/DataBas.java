@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DataBas {
-
+	
 	Connection conn;
 	Statement stmt;
 	ResultSet rs;
@@ -41,12 +41,12 @@ public class DataBas {
 
 		driverManagerSetup();
 		try {
-			rs = stmt.executeQuery("select * from test");
+			rs = stmt.executeQuery("select * from players");
 
 			while (rs.next()) {
 				System.out.println(rs.getString("name"));
 			}
-			
+
 			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -54,32 +54,37 @@ public class DataBas {
 	}
 
 	public void createPlayer(String newPlayerName) {
-
+		
 		try {
 			driverManagerSetup();
-			stmt.executeUpdate("INSERT INTO PLAYERS VALUES('"+newPlayerName+"',0,0,0);");
-			
+			stmt.executeUpdate("INSERT INTO PLAYERS VALUES('" + newPlayerName + "',0,0,0);");
 			conn.close();
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	public void lookForPlayer(String name) {
-
+	//	
+//		PlayerFactory playerFactory = new PlayerFactory();		
+//		PlayerInterface ai = playerFactory.getPlayer("Ai");
+//		PlayerInterface human =  playerFactory.getPlayer("Nicklas");
+		
 		try {
 			driverManagerSetup();
 			rs = stmt.executeQuery("select * from players");
-
+			
 			while (rs.next()) {
-				if(rs.getString("name").equalsIgnoreCase(name)){
-					System.out.println("player "+rs.getString("name")+" exist");
-				}
-				else{
-					System.out.println("Creat new player");
-		//			createPlayer(name);
+				if (rs.getString("name").equalsIgnoreCase(name)) {
+					System.out.println("player " + rs.getString("name") + " exist");
+					
+				} else {
+					createPlayer(name);
+					break;
 				}
 			}
+
 			conn.close();
 		} catch (SQLException e) {
 			System.err.println("" + e.getMessage());
