@@ -38,7 +38,7 @@ public class DataBas {
 
 		try {
 			driverManagerSetup();
-			stmt.executeUpdate("INSERT INTO PLAYERS VALUES('" + newPlayerName + "',0,0,0);");
+			stmt.executeUpdate("INSERT INTO PLAYERS VALUES('" + newPlayerName + "',0,0,0,0,0);");
 
 			conn.close();
 
@@ -48,14 +48,13 @@ public class DataBas {
 	}
 
 	public void lookForPlayer(String name) {
-		
+
 		try {
 			driverManagerSetup();
 			rs = stmt.executeQuery("select * from players");
 			boolean createNewPlayer = true;
 			while (rs.next()) {
 				if (rs.getString("name").equalsIgnoreCase(name)) {
-					System.out.println("player " + rs.getString("name") + " exist");
 					loadPlayer(name);
 					createNewPlayer = false;
 					break;
@@ -75,37 +74,60 @@ public class DataBas {
 	}
 
 	private void loadPlayer(String name) {
-		
+
 		driverManagerSetup();
 		try {
 			rs = stmt.executeQuery("select * from players");
-			human = new Human();	 
-			
+			// human = new Human(name);
+			human = Human.getInstance();
+
 			while (rs.next()) {
 				if (rs.getString("name").equalsIgnoreCase(name)) {
-	            human.setName(name); 
-	            human.setWin(rs.getInt("win"));
-	            human.setLose(rs.getInt("lose"));
-	            human.setDraw(rs.getInt("lose"));
-	            System.out.println("player " +human.getName() +" har "+human.getWin() +" vinster "+human.getLose()+" förluster "+human.getDraw()+" oavgjorda matcher");
-				break;
+					human.setName(rs.getString("name"));
+					human.setAnswerRock(rs.getInt("rock"));
+					human.setAnswerPaper(rs.getInt("paper"));
+					human.setAnswerScissors(rs.getInt("scissors"));
+					human.setAnswerLizard(rs.getInt("lizard"));
+					human.setAnswerSpock(rs.getInt("spock"));
+					// human.setWin(rs.getInt("win"));
+					// human.setLose(rs.getInt("lose"));
+					// human.setDraw(rs.getInt("lose"));
+					// System.out.println("player " +human.getName() +" har
+					// "+human.getWin() +" vinster "+human.getLose()+" förluster
+					// "+human.getDraw()+" oavgjorda matcher");
+					break;
 				}
-			
-			
+			}
+			System.out.println(human.getName() + " " + human.getAnswerRock());
 			conn.close();
-		}}catch (SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	public void savePlayer() {
 		driverManagerSetup();
-		human = new Human();
-			try {
-				rs = stmt.executeQuery("UPDATE players set win =" + human.getWin()+",lose = "+ human.getLose()+",draw = "+human.getDraw()+"where name = " + human.getName());
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}		
+		human = Human.getInstance();
+		
+		String name  = human.getName()+"";
+		String rock = human.getAnswerRock() + " ";
+		try {
+			String sql = "UPDATE players set rock = " + rock +"where name = '" + name+"';";
+			// +",PAPER = "+ human.getAnswerPaper()
+			// +",SCISSORS = "+human.getAnswerScissors()
+			// +",LIZARD = "+ human.getAnswerLizard()
+			// +",SPOCK = "+human.getAnswerSpock()
+			// +"where name = " + human.getName()+";";
+		rs  = stmt.executeQuery(sql);
+			
+			
+			//rs = stmt.executeUpdate(name);
+			// rs = stmt.executeQuery("UPDATE players set win =" +
+			// human.getWin()+",lose = "+ human.getLose()+",draw =
+			// "+human.getDraw()+"where name = " + human.getName());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void driverManagerSetup() {

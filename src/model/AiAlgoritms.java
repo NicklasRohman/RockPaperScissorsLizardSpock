@@ -3,32 +3,45 @@ package model;
 import java.util.Random;
 
 public interface AiAlgoritms {
-	Human humenPlayer = new Human();
+	Human humenPlayer = Human.getInstance();
 
 	public class Answer {
 
-		// How to get the highest value of 5
 		public String theAnswer() {
-
-			 int rock = humenPlayer.getAnswerRock();
-			 int scissors = humenPlayer.getAnswerScissors();
-			 int paper = humenPlayer.getAnswerPaper();
-			 int lizard = humenPlayer.getAnswerLizard();
-			 int spock = humenPlayer.getAnswerSpock();
+			String answer = null;
+			int rock = humenPlayer.getAnswerRock();
+			int scissors = humenPlayer.getAnswerScissors();
+			int paper = humenPlayer.getAnswerPaper();
+			int lizard = humenPlayer.getAnswerLizard();
+			int spock = humenPlayer.getAnswerSpock();
 
 			if ((rock > scissors) && (rock > paper) && (rock > lizard) && (rock > spock)) {
-				System.out.println(mostRock());
+				answer = mostRock();
 			} else if ((scissors > rock) && (scissors > paper) && (scissors > lizard) && (scissors > spock)) {
-				System.out.println(mostScissors());
+				answer = mostScissors();
 			} else if ((paper > rock) && (paper > scissors) && (paper > lizard) && (paper > spock)) {
-				System.out.println(mostPaper());
+				answer = mostPaper();
 			} else if ((lizard > rock) && (lizard > scissors) && (lizard > paper) && (lizard > spock)) {
-				System.out.println(mostLizard());
+				answer = mostLizard();
 			} else if ((spock > rock) && (spock > scissors) && (spock > paper) && (spock > lizard)) {
-				System.out.println(mostSpock());
+				answer = mostSpock();
+			} else {
+				switch (randomMethod(1, 5)) {
+				case 1:
+					return "rock";
+				case 2:
+					return "scissors";
+				case 3:
+					return "paper";
+				case 4:
+					return "lizard";
+				case 5:
+					return "spock";
+				default:
+					break;
+				}
 			}
-			System.out.println("gick förbi if");
-			return "gick förbi if";
+			return answer;
 		}
 
 		private String mostRock() {
@@ -130,7 +143,6 @@ public interface AiAlgoritms {
 		private int randomMethod(int min, int max) {
 			Random rand = new Random();
 			int test = rand.nextInt(max + 1 - min) + min;
-			System.out.println(test);
 			return test;
 		}
 	}

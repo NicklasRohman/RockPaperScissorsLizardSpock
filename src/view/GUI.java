@@ -14,6 +14,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import model.ButtonPressedEvent;
 import model.ButtonPressedListener;
+import model.Human;
 import model.PlayerFactory;
 import model.PlayerInterface;
 
@@ -136,6 +137,7 @@ public class GUI extends Application {
 			window.show();
 
 			gamePlay.startGame();
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -148,7 +150,7 @@ public class GUI extends Application {
 	}
 
 	public void quitButton() {
-		ConfirmBox confirmBox = ConfirmBox.getInstance();
+//		ConfirmBox confirmBox = ConfirmBox.getInstance();
 //		Boolean answer = confirmBox.display("Are You Sure???");
 //		if (answer) {
 //			DataBas databas = DataBas.getInstance();

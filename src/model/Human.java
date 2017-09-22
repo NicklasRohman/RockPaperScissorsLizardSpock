@@ -1,11 +1,23 @@
 package model;
 
-public class Human extends Player implements PlayerInterface{
+public class Human implements PlayerInterface{
 	private String name;
 	private String HumanAnswer;
-	private int answerRock = 0, answerLizard = 0, answerSpock = 0, answerScissors = 0, answerPaper = 0;
+	private int answerRock, answerLizard, answerSpock, answerScissors , answerPaper;
 	private int win,lose,draw;
 	
+	static Human human;
+	
+	private Human(){
+		
+	}
+	
+	public static Human getInstance() {
+		if (human == null) {
+			human = new Human();
+		}
+		return human;
+	}	
 	
 	/**
 	 * @return the win
@@ -53,15 +65,6 @@ public class Human extends Player implements PlayerInterface{
 	public void setHumanAnswer(String humanAnswer) {
 		HumanAnswer = humanAnswer;
 	}
-
-
-	public Human(String playerName) {
-		this.name = playerName;
-	}
-
-	public Human() {
-	}
-
 
 	/**
 	 * @return the answerRock
@@ -169,5 +172,6 @@ public class Human extends Player implements PlayerInterface{
 	public void setDraw(int draw) {
 		this.draw = draw;
 	}
+
 
 }
