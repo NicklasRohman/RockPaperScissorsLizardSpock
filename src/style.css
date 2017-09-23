@@ -21,6 +21,17 @@
 	-fx-spacing: 10;
 }
 
+.button:pressed:hover {
+    -fx-scale-y: 0.9;
+    -fx-scale-x: 0.9;
+}
+
+.button:hover {
+    -fx-background-color: deepskyblue;
+    -fx-scale-y: 1.1;
+}
+
+
 .pane {
 	-fx-background-color: #EEE;
 }
@@ -44,6 +55,13 @@
 .spock {
 	-fx-background-image: url('Pic/spock.png');
 }
+
+.playerLabels{
+	-fx-font-size: 22px;
+	-fx-background-color: #deb887;
+	-fx-background-insets: -3;
+}
+
 
 /*ConfirmBoxers style*/
 .borderPane {
@@ -97,3 +115,4 @@
 	-fx-background-radius: 10px;
 	-fx-background-insets: -20, -10;
 }
+

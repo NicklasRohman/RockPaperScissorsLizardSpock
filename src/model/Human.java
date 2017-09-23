@@ -1,24 +1,24 @@
 package model;
 
-public class Human implements PlayerInterface{
+public class Human implements PlayerInterface {
 	private String name;
 	private String HumanAnswer;
-	private int answerRock, answerLizard, answerSpock, answerScissors , answerPaper;
-	private int win,lose,draw;
-	
+	private int answerRock, answerLizard, answerSpock, answerScissors, answerPaper;
+	private int win=0, lose=0, draw=0;
+
 	static Human human;
-	
-	private Human(){
-		
+
+	private Human() {
+
 	}
-	
+
 	public static Human getInstance() {
 		if (human == null) {
 			human = new Human();
 		}
 		return human;
-	}	
-	
+	}
+
 	/**
 	 * @return the win
 	 */
@@ -26,14 +26,13 @@ public class Human implements PlayerInterface{
 		return win;
 	}
 
-
 	/**
-	 * @param win the win to set
+	 * @param win
+	 *            the win to set
 	 */
 	public void setWin(int win) {
 		this.win = win;
 	}
-
 
 	/**
 	 * @return the name
@@ -42,14 +41,13 @@ public class Human implements PlayerInterface{
 		return name;
 	}
 
-
 	/**
-	 * @param name the name to set
+	 * @param name
+	 *            the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
-
 
 	/**
 	 * @return the humanAnswer
@@ -58,9 +56,9 @@ public class Human implements PlayerInterface{
 		return HumanAnswer;
 	}
 
-
 	/**
-	 * @param humanAnswer the humanAnswer to set
+	 * @param humanAnswer
+	 *            the humanAnswer to set
 	 */
 	public void setHumanAnswer(String humanAnswer) {
 		HumanAnswer = humanAnswer;
@@ -80,14 +78,13 @@ public class Human implements PlayerInterface{
 		return lose;
 	}
 
-
 	/**
-	 * @param lose the lose to set
+	 * @param lose
+	 *            the lose to set
 	 */
 	public void setLose(int lose) {
 		this.lose = lose;
 	}
-
 
 	/**
 	 * @param answerRock
@@ -157,7 +154,6 @@ public class Human implements PlayerInterface{
 		this.answerPaper = answerPaper;
 	}
 
-
 	/**
 	 * @return the draw
 	 */
@@ -165,13 +161,12 @@ public class Human implements PlayerInterface{
 		return draw;
 	}
 
-
 	/**
-	 * @param draw the draw to set
+	 * @param draw
+	 *            the draw to set
 	 */
 	public void setDraw(int draw) {
 		this.draw = draw;
 	}
-
 
 }

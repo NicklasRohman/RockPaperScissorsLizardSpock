@@ -2,7 +2,6 @@ package view;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import controller.DataBas;
 import controller.GamePlay;
 import javafx.application.Application;
@@ -15,8 +14,6 @@ import javafx.stage.Stage;
 import model.ButtonPressedEvent;
 import model.ButtonPressedListener;
 import model.Human;
-import model.PlayerFactory;
-import model.PlayerInterface;
 
 public class GUI extends Application {
 	GamePlay gamePlay = GamePlay.getInstance();
@@ -33,9 +30,9 @@ public class GUI extends Application {
 	List<Button> buttons;
 
 	Stage window;
-	Label playerName;
-	Label playerWin;
-	Label playerTotalMatches;
+	static Label playerName;
+	static Label playerWin;
+	static Label playerTotalMatches;
 
 	private List<ButtonPressedListener> buttonPressedListeners = new ArrayList<>();
 
@@ -74,7 +71,7 @@ public class GUI extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-
+		
 		try {
 			window = primaryStage;
 			window.setOnCloseRequest(e -> {
@@ -89,10 +86,14 @@ public class GUI extends Application {
 			lizard = new Button();
 			spock = new Button();
 			help = new Button("Help");
-			playerName = new Label("Player Name");
-			playerWin = new Label("Wins");
+			playerName = new Label();
+			playerWin = new Label();
 			playerTotalMatches = new Label("Total");
 
+			playerName.getStyleClass().add("playerLabels");
+			playerWin.getStyleClass().add("playerLabels");
+			playerTotalMatches.getStyleClass().add("playerLabels");
+			
 			GridPane pane = new GridPane();
 			pane.getStyleClass().add("pane");
 			pane.setAlignment(Pos.CENTER);
@@ -100,8 +101,7 @@ public class GUI extends Application {
 			pane.setVgap(10);
 			pane.setGridLinesVisible(true);
 			pane.setMinSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-			pane.setPrefSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-
+			
 			// grid system (column, row)
 			pane.add(rock, 1, 1);
 			pane.add(paper, 3, 1);
@@ -137,11 +137,18 @@ public class GUI extends Application {
 			window.show();
 
 			gamePlay.startGame();
+			labelText();
 			
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void labelText() {
+		Human human = Human.getInstance();
+		playerName.setText("Player: " + human.getName());
+		playerWin.setText("Wins over Ai: " + human.getWin());
+		playerTotalMatches.setText("Total matches: " + (human.getWin() + human.getLose() + human.getDraw()));
 	}
 
 	public void helpButton() {
@@ -150,13 +157,13 @@ public class GUI extends Application {
 	}
 
 	public void quitButton() {
-//		ConfirmBox confirmBox = ConfirmBox.getInstance();
-//		Boolean answer = confirmBox.display("Are You Sure???");
-//		if (answer) {
-//			DataBas databas = DataBas.getInstance();
-//			databas.savePlayer();
-			window.close();
-//		}
+		// ConfirmBox confirmBox = ConfirmBox.getInstance();
+		// Boolean answer = confirmBox.display("Are You Sure???");
+		// if (answer) {
+		DataBas databas = DataBas.getInstance();
+		databas.savePlayer();
+		window.close();
+		// }
 	}
 
 }

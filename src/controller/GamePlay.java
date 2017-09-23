@@ -38,6 +38,55 @@ public class GamePlay implements ButtonPressedListener {
 
 	}
 
+	public void startGame() {
+		DataBas databas = DataBas.getInstance();
+		NameBox namebox = NameBox.getInstance();
+
+		String name = namebox.display("Vad heter du då?");
+		databas.lookForPlayer(name);
+
+	}
+
+	public void resultGame() {
+		ResultBox resultbox = ResultBox.getInstance();
+		int HumanIntAnswer = makeAnswerToIntValue(human.getHumanAnswer());
+		int AiIntAnswer = makeAnswerToIntValue(ai.getAiAnswer());
+		String theWinnerIs = calculateHowWins(HumanIntAnswer, AiIntAnswer);
+
+		gui.labelText();
+		resultbox.display(theWinnerIs);
+	}
+
+	private String calculateHowWins(int humanIntAnswer, int aiIntAnswer) {
+
+		int result = (5 + humanIntAnswer - aiIntAnswer) % 5;
+		if ((result == 1) || result == 3) {
+			human.setWin(human.getWin() + 1);
+			return human.getName();
+		} else if ((result == 2) || result == 4) {
+			human.setLose(human.getLose() + 1);
+			return "Ai";
+		} else {
+			human.setDraw(human.getDraw() + 1);
+			return "It's a Tie";
+		}
+	}
+
+	private int makeAnswerToIntValue(String answer) {
+
+		if (answer.equalsIgnoreCase("rock")) {
+			return 0;
+		} else if (answer.equalsIgnoreCase("paper")) {
+			return 1;
+		} else if (answer.equalsIgnoreCase("scissors")) {
+			return 2;
+		} else if (answer.equalsIgnoreCase("spock")) {
+			return 3;
+		} else {
+			return 4;
+		}
+	}
+
 	@Override
 	public void buttonPressed(ButtonPressedEvent event) {
 		human = Human.getInstance();
@@ -79,20 +128,6 @@ public class GamePlay implements ButtonPressedListener {
 			break;
 		}
 		resultGame();
-	}
-
-	public void startGame() {
-		DataBas databas = DataBas.getInstance();
-		NameBox namebox = NameBox.getInstance();
-
-		String name = namebox.display("Vad heter du då?");
-		databas.lookForPlayer(name);
-
-	}
-
-	public void resultGame() {
-		ResultBox resultbox = ResultBox.getInstance();
-		resultbox.display();
 	}
 
 }

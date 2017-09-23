@@ -5,8 +5,6 @@ public class Ai implements AiAlgoritms, PlayerInterface {
 	private String name = "Ai";
 	private String aiAnswer;
 
-
-
 	static Ai ai;
 
 	private Ai() {
@@ -18,11 +16,10 @@ public class Ai implements AiAlgoritms, PlayerInterface {
 		}
 		return ai;
 	}
-	
-	public void aiCalculateAnswer(){
+
+	public void aiCalculateAnswer() {
 		Answer answer = new Answer();
 		aiAnswer = answer.theAnswer();
-		System.out.println(aiAnswer);
 	}
 
 	/**
@@ -40,11 +37,10 @@ public class Ai implements AiAlgoritms, PlayerInterface {
 	}
 
 	/**
-	 * @param aiAnswer the aiAnswer to set
+	 * @param aiAnswer
+	 *            the aiAnswer to set
 	 */
 	public void setAiAnswer(String aiAnswer) {
 		this.aiAnswer = aiAnswer;
 	}
 }
-
-

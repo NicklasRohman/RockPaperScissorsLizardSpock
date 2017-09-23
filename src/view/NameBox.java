@@ -18,7 +18,6 @@ import javafx.stage.StageStyle;
  */
 public class NameBox {
 
-	static String answer;
 	static NameBox nameBox;
 
 	Stage alertWindow;

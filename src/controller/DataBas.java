@@ -78,7 +78,6 @@ public class DataBas {
 		driverManagerSetup();
 		try {
 			rs = stmt.executeQuery("select * from players");
-			// human = new Human(name);
 			human = Human.getInstance();
 
 			while (rs.next()) {
@@ -98,7 +97,6 @@ public class DataBas {
 					break;
 				}
 			}
-			System.out.println(human.getName() + " " + human.getAnswerRock());
 			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -108,20 +106,15 @@ public class DataBas {
 	public void savePlayer() {
 		driverManagerSetup();
 		human = Human.getInstance();
-		
-		String name  = human.getName()+"";
-		String rock = human.getAnswerRock() + " ";
+
 		try {
-			String sql = "UPDATE players set rock = " + rock +"where name = '" + name+"';";
-			// +",PAPER = "+ human.getAnswerPaper()
-			// +",SCISSORS = "+human.getAnswerScissors()
-			// +",LIZARD = "+ human.getAnswerLizard()
-			// +",SPOCK = "+human.getAnswerSpock()
-			// +"where name = " + human.getName()+";";
-		rs  = stmt.executeQuery(sql);
-			
-			
-			//rs = stmt.executeUpdate(name);
+			int result;
+			String sql = "UPDATE players set rock = " + human.getAnswerRock() + ",PAPER = " + human.getAnswerPaper()
+					+ ",SCISSORS = " + human.getAnswerScissors() + ",LIZARD = " + human.getAnswerLizard() + ",SPOCK = "
+					+ human.getAnswerSpock() + "where name = '" + human.getName() + "';";
+
+			result = stmt.executeUpdate(sql);
+
 			// rs = stmt.executeQuery("UPDATE players set win =" +
 			// human.getWin()+",lose = "+ human.getLose()+",draw =
 			// "+human.getDraw()+"where name = " + human.getName());
