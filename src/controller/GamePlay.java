@@ -5,6 +5,7 @@ import model.ButtonPressedEvent;
 import model.ButtonPressedListener;
 import model.Human;
 import view.GUI;
+import view.HelpBox;
 import view.NameBox;
 import view.ResultBox;
 
@@ -115,7 +116,7 @@ public class GamePlay implements ButtonPressedListener {
 			resultGame();
 			break;
 		case 5:
-			gui.helpButton();
+			helpButton();
 			break;
 
 		default:
@@ -156,4 +157,14 @@ public class GamePlay implements ButtonPressedListener {
 		}
 	}
 
+	
+	/**
+	 * Show the helpBox
+	 */
+	public void helpButton() {
+		HelpBox help = HelpBox.getInstance();
+		help.display();
+	} 
+
 }
+

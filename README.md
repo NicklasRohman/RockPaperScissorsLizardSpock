@@ -19,3 +19,4 @@ Ska göras:
 klassdiagram
 dokumentera allt
 finslipa css i resultBox.
+namebox har problem med tecken

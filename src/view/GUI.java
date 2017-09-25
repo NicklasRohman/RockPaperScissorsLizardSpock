@@ -2,6 +2,7 @@ package view;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import controller.DataBas;
 import controller.GamePlay;
 import javafx.application.Application;
@@ -71,12 +72,20 @@ public class GUI extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		
+
 		try {
 			window = primaryStage;
 			window.setOnCloseRequest(e -> {
 				e.consume();
-				quitButton();
+
+				ConfirmBox confirmBox = ConfirmBox.getInstance();
+				Boolean answer = confirmBox.display("Are You Sure???");
+				if (answer) {
+					DataBas databas = DataBas.getInstance();
+					databas.savePlayer();
+					window.close();
+				}
+
 			});
 
 			addButtonPressedListener(gamePlay);
@@ -93,7 +102,7 @@ public class GUI extends Application {
 			playerName.getStyleClass().add("playerLabels");
 			playerWin.getStyleClass().add("playerLabels");
 			playerTotalMatches.getStyleClass().add("playerLabels");
-			
+
 			GridPane pane = new GridPane();
 			pane.getStyleClass().add("pane");
 			pane.setAlignment(Pos.CENTER);
@@ -101,7 +110,7 @@ public class GUI extends Application {
 			pane.setVgap(10);
 			pane.setGridLinesVisible(true);
 			pane.setMinSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-			
+
 			// grid system (column, row)
 			pane.add(rock, 1, 1);
 			pane.add(paper, 3, 1);
@@ -138,32 +147,20 @@ public class GUI extends Application {
 
 			gamePlay.startGame();
 			labelText();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
+	/**
+	 * Sets the text on label playerName , playerWin and playerTotalMatches.
+	 */
 	public void labelText() {
 		Human human = Human.getInstance();
 		playerName.setText("Player: " + human.getName());
 		playerWin.setText("Wins over Ai: " + human.getWin());
 		playerTotalMatches.setText("Total matches: " + (human.getWin() + human.getLose() + human.getDraw()));
-	}
-
-	public void helpButton() {
-		HelpBox help = HelpBox.getInstance();
-		help.display();
-	}
-
-	public void quitButton() {
-		// ConfirmBox confirmBox = ConfirmBox.getInstance();
-		// Boolean answer = confirmBox.display("Are You Sure???");
-		// if (answer) {
-		DataBas databas = DataBas.getInstance();
-		databas.savePlayer();
-		window.close();
-		// }
 	}
 
 }

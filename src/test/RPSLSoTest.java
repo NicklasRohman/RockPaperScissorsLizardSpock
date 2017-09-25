@@ -3,20 +3,19 @@ package test;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import model.AiAlgoritms.Answer;
+import model.Ai;
 
 public class RPSLSoTest {
 
-	Answer ai;
+	Ai ai;
 	@Before
 	public void startTest(){
-		ai = new Answer();
+		//ai = new Ai();
 	}
 	
 	@Test
 	public void aiAlgoritmTest() {
-		equals(ai.theAnswer());
+		//equals(ai.theAnswer());
 	}
 
 }
