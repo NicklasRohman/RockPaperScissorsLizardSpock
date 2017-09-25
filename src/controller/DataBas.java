@@ -8,6 +8,11 @@ import java.sql.Statement;
 
 import model.Human;
 
+/**
+ * 
+ * @author Nicklas This class should control all about the saving,loading from
+ *         database
+ */
 public class DataBas {
 
 	Human human;
@@ -34,18 +39,12 @@ public class DataBas {
 		return databas;
 	}
 
-	private void createPlayer(String newPlayerName) {
-
-		try {
-			driverManagerSetup();
-			stmt.executeUpdate("INSERT INTO PLAYERS VALUES('" + newPlayerName + "',0,0,0,0,0);");
-
-			conn.close();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
+	/**
+	 * This method look if the name of the player exist. If it do load that
+	 * player record ,if not create a new player.
+	 * 
+	 * @param name the name of the player
+	 */
 
 	public void lookForPlayer(String name) {
 
@@ -72,6 +71,43 @@ public class DataBas {
 			System.err.println("" + e.getSQLState());
 		}
 	}
+
+	private void createPlayer(String newPlayerName) {
+
+		try {
+			driverManagerSetup();
+			stmt.executeUpdate("INSERT INTO PLAYERS VALUES('" + newPlayerName + "',0,0,0,0,0);");
+
+			conn.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * This method save the player record when the player quits the game. 
+	 */
+	public void savePlayer() {
+		driverManagerSetup();
+		human = Human.getInstance();
+
+		try {
+			int result;
+			String sql = "UPDATE players set rock = " + human.getAnswerRock() + ",PAPER = " + human.getAnswerPaper()
+					+ ",SCISSORS = " + human.getAnswerScissors() + ",LIZARD = " + human.getAnswerLizard() + ",SPOCK = "
+					+ human.getAnswerSpock() + "where name = '" + human.getName() + "';";
+
+			result = stmt.executeUpdate(sql);
+
+			// rs = stmt.executeQuery("UPDATE players set win =" +
+			// human.getWin()+",lose = "+ human.getLose()+",draw =
+			// "+human.getDraw()+"where name = " + human.getName());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 
 	private void loadPlayer(String name) {
 
@@ -102,27 +138,7 @@ public class DataBas {
 			e.printStackTrace();
 		}
 	}
-
-	public void savePlayer() {
-		driverManagerSetup();
-		human = Human.getInstance();
-
-		try {
-			int result;
-			String sql = "UPDATE players set rock = " + human.getAnswerRock() + ",PAPER = " + human.getAnswerPaper()
-					+ ",SCISSORS = " + human.getAnswerScissors() + ",LIZARD = " + human.getAnswerLizard() + ",SPOCK = "
-					+ human.getAnswerSpock() + "where name = '" + human.getName() + "';";
-
-			result = stmt.executeUpdate(sql);
-
-			// rs = stmt.executeQuery("UPDATE players set win =" +
-			// human.getWin()+",lose = "+ human.getLose()+",draw =
-			// "+human.getDraw()+"where name = " + human.getName());
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-
+	
 	private void driverManagerSetup() {
 		try {
 			conn = DriverManager.getConnection(url + System.getProperty("user.home") + "/test", user, pass);

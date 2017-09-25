@@ -76,6 +76,8 @@ public class HelpBox {
 		alertWindow.setScene(scen);
 		alertWindow.showAndWait();
 
+		boolean answer  =true;
+		
 		return true;
 
 	}

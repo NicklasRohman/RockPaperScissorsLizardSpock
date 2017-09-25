@@ -8,6 +8,11 @@ import view.GUI;
 import view.NameBox;
 import view.ResultBox;
 
+/**
+ * 
+ * @author Nicklas
+ *	This class starts the game and is the controller over the game.
+ */
 public class GamePlay implements ButtonPressedListener {
 
 	public static GamePlay gp = null;
@@ -31,6 +36,10 @@ public class GamePlay implements ButtonPressedListener {
 		return gp;
 	}
 
+	/**
+	 * Main method starts up the application
+	 * @param args = null
+	 */
 	public static void main(String[] args) {
 
 		gui = new GUI();
@@ -38,6 +47,9 @@ public class GamePlay implements ButtonPressedListener {
 
 	}
 
+	/**
+	 * Method that starts the game
+	 */
 	public void startGame() {
 		DataBas databas = DataBas.getInstance();
 		NameBox namebox = NameBox.getInstance();
@@ -46,7 +58,10 @@ public class GamePlay implements ButtonPressedListener {
 		databas.lookForPlayer(name);
 
 	}
-
+	
+	/**
+	 * method that will show how is the winner 
+	 */
 	public void resultGame() {
 		ResultBox resultbox = ResultBox.getInstance();
 		int HumanIntAnswer = makeAnswerToIntValue(human.getHumanAnswer());
@@ -55,6 +70,60 @@ public class GamePlay implements ButtonPressedListener {
 
 		gui.labelText();
 		resultbox.display(theWinnerIs);
+	}
+
+	/**
+	 * method that know what to do whit the button player just pressed.
+	 */
+	@Override
+	public void buttonPressed(ButtonPressedEvent event) {
+		human = Human.getInstance();
+		ai = Ai.getInstance();
+//		PlayerFactory playerFactory = new PlayerFactory();
+//		PlayerInterface human2 = playerFactory.getPlayer("");
+//		System.out.println(human2);
+
+		switch (event.getPressedButton()) {
+		case 0:
+			ai.aiCalculateAnswer();
+			human.setAnswerRock(human.getAnswerRock() + 1);
+			human.setHumanAnswer("rock");
+			resultGame();
+			break;
+		case 1:
+			ai.aiCalculateAnswer();
+			human.setAnswerPaper(human.getAnswerPaper() + 1);
+			human.setHumanAnswer("paper");
+			resultGame();
+			break;
+		case 2:
+			ai.aiCalculateAnswer();
+			human.setAnswerScissors(human.getAnswerScissors() + 1);
+			human.setHumanAnswer("scissors");
+			resultGame();
+			break;
+		case 3:
+			ai.aiCalculateAnswer();
+			human.setAnswerLizard(human.getAnswerLizard() + 1);
+			human.setHumanAnswer("lizard");
+			resultGame();
+			break;
+		case 4:
+			ai.aiCalculateAnswer();
+			human.setAnswerSpock(human.getAnswerSpock() + 1);
+			human.setHumanAnswer("spock");
+			resultGame();
+			break;
+		case 5:
+			gui.helpButton();
+			break;
+
+		default:
+			System.out.println("No index");
+
+			break;
+		}
+
 	}
 
 	private String calculateHowWins(int humanIntAnswer, int aiIntAnswer) {
@@ -85,49 +154,6 @@ public class GamePlay implements ButtonPressedListener {
 		} else {
 			return 4;
 		}
-	}
-
-	@Override
-	public void buttonPressed(ButtonPressedEvent event) {
-		human = Human.getInstance();
-		ai = Ai.getInstance();
-
-		switch (event.getPressedButton()) {
-		case 0:
-			ai.aiCalculateAnswer();
-			human.setAnswerRock(human.getAnswerRock() + 1);
-			human.setHumanAnswer("rock");
-			break;
-		case 1:
-			ai.aiCalculateAnswer();
-			human.setAnswerPaper(human.getAnswerPaper() + 1);
-			human.setHumanAnswer("paper");
-			break;
-		case 2:
-			ai.aiCalculateAnswer();
-			human.setAnswerScissors(human.getAnswerScissors() + 1);
-			human.setHumanAnswer("scissors");
-			break;
-		case 3:
-			ai.aiCalculateAnswer();
-			human.setAnswerLizard(human.getAnswerLizard() + 1);
-			human.setHumanAnswer("lizard");
-			break;
-		case 4:
-			ai.aiCalculateAnswer();
-			human.setAnswerSpock(human.getAnswerSpock() + 1);
-			human.setHumanAnswer("spock");
-			break;
-		case 5:
-			gui.helpButton();
-			break;
-
-		default:
-			System.out.println("No index");
-
-			break;
-		}
-		resultGame();
 	}
 
 }

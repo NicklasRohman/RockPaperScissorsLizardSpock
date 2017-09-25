@@ -1,10 +1,14 @@
 package model;
 
-public class Human implements PlayerInterface {
+/**
+ * 
+ * @author Nicklas This class should only contain things whit the human player.
+ */
+public class Human extends Players /* implements PlayerInterface */ {
 	private String name;
-	private String HumanAnswer;
+	private String answer;
 	private int answerRock, answerLizard, answerSpock, answerScissors, answerPaper;
-	private int win=0, lose=0, draw=0;
+	private int win = 0, lose = 0, draw = 0;
 
 	static Human human;
 
@@ -12,6 +16,11 @@ public class Human implements PlayerInterface {
 
 	}
 
+	/**
+	 * Singleton pattern, it can only be one Human player.
+	 * 
+	 * @return human
+	 */
 	public static Human getInstance() {
 		if (human == null) {
 			human = new Human();
@@ -20,70 +29,49 @@ public class Human implements PlayerInterface {
 	}
 
 	/**
-	 * @return the win
-	 */
-	public int getWin() {
-		return win;
-	}
-
-	/**
-	 * @param win
-	 *            the win to set
-	 */
-	public void setWin(int win) {
-		this.win = win;
-	}
-
-	/**
-	 * @return the name
+	 * gets the Human name
+	 * 
+	 * @return the Human name
 	 */
 	public String getName() {
 		return name;
 	}
 
 	/**
+	 * sets the Human name
+	 * 
 	 * @param name
-	 *            the name to set
+	 *            of the human
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
 	/**
+	 * gets what the human answered
+	 * 
 	 * @return the humanAnswer
 	 */
 	public String getHumanAnswer() {
-		return HumanAnswer;
+		return answer;
 	}
 
 	/**
+	 * sets what the human answered
+	 * 
 	 * @param humanAnswer
-	 *            the humanAnswer to set
 	 */
 	public void setHumanAnswer(String humanAnswer) {
-		HumanAnswer = humanAnswer;
+		answer = humanAnswer;
 	}
 
 	/**
+	 * get how many time human have answered rock
+	 * 
 	 * @return the answerRock
 	 */
 	public int getAnswerRock() {
 		return answerRock;
-	}
-
-	/**
-	 * @return the lose
-	 */
-	public int getLose() {
-		return lose;
-	}
-
-	/**
-	 * @param lose
-	 *            the lose to set
-	 */
-	public void setLose(int lose) {
-		this.lose = lose;
 	}
 
 	/**
@@ -95,6 +83,8 @@ public class Human implements PlayerInterface {
 	}
 
 	/**
+	 * get how many time human have answered lizard
+	 * 
 	 * @return the answerLizard
 	 */
 	public int getAnswerLizard() {
@@ -110,6 +100,8 @@ public class Human implements PlayerInterface {
 	}
 
 	/**
+	 * get how many time human have answered spock
+	 * 
 	 * @return the answerSpock
 	 */
 	public int getAnswerSpock() {
@@ -125,6 +117,8 @@ public class Human implements PlayerInterface {
 	}
 
 	/**
+	 * get how many time human have answered scissors
+	 * 
 	 * @return the answerScissors
 	 */
 	public int getAnswerScissors() {
@@ -140,6 +134,8 @@ public class Human implements PlayerInterface {
 	}
 
 	/**
+	 * get how many time human have answered paper
+	 * 
 	 * @return the answerPaper
 	 */
 	public int getAnswerPaper() {
@@ -155,6 +151,46 @@ public class Human implements PlayerInterface {
 	}
 
 	/**
+	 * returns number of human wins
+	 * 
+	 * @return the win
+	 */
+	public int getWin() {
+		return win;
+	}
+
+	/**
+	 * set the wins on human player
+	 * 
+	 * @param number
+	 *            of win
+	 */
+	public void setWin(int win) {
+		this.win = win;
+	}
+
+	/**
+	 * get the lose on human players matches
+	 * 
+	 * @return the lose
+	 */
+	public int getLose() {
+		return lose;
+	}
+
+	/**
+	 * set the lose on human player
+	 * 
+	 * @param number
+	 *            of lose the lose to set
+	 */
+	public void setLose(int lose) {
+		this.lose = lose;
+	}
+
+	/**
+	 * get the draws on human players matches
+	 * 
 	 * @return the draw
 	 */
 	public int getDraw() {
@@ -162,8 +198,10 @@ public class Human implements PlayerInterface {
 	}
 
 	/**
-	 * @param draw
-	 *            the draw to set
+	 * set the draws on human players matches
+	 * 
+	 * @param number
+	 *            of draw
 	 */
 	public void setDraw(int draw) {
 		this.draw = draw;

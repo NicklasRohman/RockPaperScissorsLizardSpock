@@ -3,6 +3,7 @@ package test;
 
 import org.junit.Before;
 import org.junit.Test;
+
 import model.AiAlgoritms.Answer;
 
 public class RPSLSoTest {
