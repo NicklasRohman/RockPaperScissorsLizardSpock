@@ -26,7 +26,7 @@ public class NormalAi extends AbstractAi {
 
 	@Override
 	public String theAnswer() {
-		int result = RandomClass.randomMethod(1, 2);
+		int result = randomMethod(1, 2);
 		if (result == 1) {
 			EasyAi ai = EasyAi.getInstance();
 			return ai.theAnswer();

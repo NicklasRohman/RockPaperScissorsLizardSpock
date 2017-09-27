@@ -7,5 +7,4 @@ package model;
 public interface AiAlgoritms {
 	//calculating and returning a answer
 	public String theAnswer();
-	
 }

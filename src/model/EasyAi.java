@@ -1,13 +1,13 @@
 package model;
 
 /**
- * @author Nicklas This class should only contain things whit the simple Ai player.
+ * @author Nicklas This class should only contain things whit the Easy Ai player.
  */
 public class EasyAi extends AbstractAi {
 
 	private String name = "Ai";
 	private String answer;
-
+	private int aiLevel = 1;
 	static EasyAi ai;
 
 	private EasyAi() {
@@ -78,7 +78,7 @@ public class EasyAi extends AbstractAi {
 		} else if ((spock > rock) && (spock > scissors) && (spock > paper) && (spock > lizard)) {
 			answer = mostSpock();
 		} else {
-			switch (RandomClass.randomMethod(1, 5)) {
+			switch (randomMethod(1, 5)) {
 			case 1:
 				return "rock";
 			case 2:
@@ -94,6 +94,13 @@ public class EasyAi extends AbstractAi {
 			}
 		}
 		return answer;
+	}
+
+	/**
+	 * @return the aiLevel
+	 */
+	public int getAiLevel() {
+		return aiLevel;
 	}
 
 }

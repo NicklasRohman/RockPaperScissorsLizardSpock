@@ -4,9 +4,9 @@ package model;
  * 
  * @author Nicklas abstract class for all the Ai we will have
  */
-public abstract class AbstractAi extends Players implements AiAlgoritms {
+public abstract class AbstractAi extends Players implements AiAlgoritms , IRandomMethods{
 	
-	private int aiLevel = 1;
+	int aiLevel;
 	
 	public String theAnswer() {
 		return null;
@@ -15,7 +15,7 @@ public abstract class AbstractAi extends Players implements AiAlgoritms {
 	Human humanPlayer = Human.getInstance();
 	public String mostRock() {
 		if (humanPlayer.getAnswerPaper() == humanPlayer.getAnswerSpock()) {
-			switch (RandomClass.randomMethod(1, 2)) {
+			switch (randomMethod(1, 2)) {
 			case 1:
 				return "paper";
 			case 2:
@@ -33,7 +33,7 @@ public abstract class AbstractAi extends Players implements AiAlgoritms {
 
 	public String mostPaper() {
 		if (humanPlayer.getAnswerScissors() == humanPlayer.getAnswerLizard()) {
-			switch (RandomClass.randomMethod(1, 2)) {
+			switch (randomMethod(1, 2)) {
 			case 1:
 				return "scissors";
 			case 2:
@@ -53,7 +53,7 @@ public abstract class AbstractAi extends Players implements AiAlgoritms {
 
 	public String mostSpock() {
 		if (humanPlayer.getAnswerLizard() == humanPlayer.getAnswerPaper()) {
-			switch (RandomClass.randomMethod(1, 2)) {
+			switch (randomMethod(1, 2)) {
 			case 1:
 				return "lizard";
 			case 2:
@@ -72,7 +72,7 @@ public abstract class AbstractAi extends Players implements AiAlgoritms {
 
 	public String mostLizard() {
 		if (humanPlayer.getAnswerRock() == humanPlayer.getAnswerScissors()) {
-			switch (RandomClass.randomMethod(1, 2)) {
+			switch (randomMethod(1, 2)) {
 			case 1:
 				return "rock";
 			case 2:
@@ -91,7 +91,7 @@ public abstract class AbstractAi extends Players implements AiAlgoritms {
 
 	public String mostScissors() {
 		if (humanPlayer.getAnswerSpock() == humanPlayer.getAnswerRock()) {
-			switch (RandomClass.randomMethod(1, 2)) {
+			switch (randomMethod(1, 2)) {
 			case 1:
 				return "spock";
 			case 2:
@@ -108,18 +108,21 @@ public abstract class AbstractAi extends Players implements AiAlgoritms {
 		}
 	}
 
+	@Override
+	public int randomMethod(int min, int max) {
+			int test = rand.nextInt(max + 1 - min) + min;
+			return test;
+		}
+	
+	
 	/**
 	 * @return the aiLevel
 	 */
 	public int getAiLevel() {
 		return aiLevel;
 	}
+	
+	
 
-	/**
-	 * @param aiLevel the aiLevel to set
-	 */
-	public void setAiLevel(int aiLevel) {
-		this.aiLevel = aiLevel;
-	}
 
 }

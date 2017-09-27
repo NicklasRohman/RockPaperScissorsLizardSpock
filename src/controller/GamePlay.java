@@ -85,6 +85,8 @@ public class GamePlay implements ButtonPressedListener {
 		ai = EasyAi.getInstance();
 		AbstractAi aiLevel;
 		
+		
+		
 		switch (event.getPressedButton()) {
 		case 0:
 			whatAiLevel();
@@ -121,30 +123,11 @@ public class GamePlay implements ButtonPressedListener {
 			helpButton();
 			break;
 		case 6:
-			aiLevel = new AbstractAi() {
-				@Override
-				public void setAiLevel(int aiLevel) {
-					super.setAiLevel(1);
-				}
-			};
 			break;
 		case 7:
-			aiLevel = new AbstractAi() {
-				@Override
-				public void setAiLevel(int aiLevel) {
-					super.setAiLevel(2);
-				}
-			};
-			
 			break;
 		case 8:
-			aiLevel = new AbstractAi() {
-				@Override
-				public void setAiLevel(int aiLevel) {
-					super.setAiLevel(3);
-				}
-			};
-						break;
+			break;
 
 		default:
 			System.out.println("No index");
@@ -194,9 +177,17 @@ public class GamePlay implements ButtonPressedListener {
 
 	public void whatAiLevel(){
 		int aiLevelMove;
-		AbstractAi abstractAi = new AbstractAi() {
+		AbstractAi aiLvl = new AbstractAi() {@Override
+		public int getAiLevel() {
 			
+			return super.getAiLevel();
+		}
 		};
+		
+		
+		
+		
+		
 		if (true) {
 			
 		}

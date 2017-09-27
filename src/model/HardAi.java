@@ -2,8 +2,9 @@ package model;
 
 /**
  * 
- * @author Nicklas class for the smart AI, it will take the answer from player
- *         before making any move.
+ * @author Nicklas 
+ * class for the smart AI, it will take the answer from player
+ * before making any move.
  */
 public class HardAi extends AbstractAi {
 
