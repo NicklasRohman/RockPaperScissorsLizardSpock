@@ -22,6 +22,10 @@ public class GUI extends Application {
 	final int WINDOW_WIDTH = 1600;
 	final int WINDOW_HEIGHT = 900;
 
+	Button simpleAi;
+	Button middleAi;
+	Button smartAi;
+	
 	Button rock;
 	Button paper;
 	Button scissors;
@@ -59,7 +63,10 @@ public class GUI extends Application {
 		buttons.add(lizard);
 		buttons.add(spock);
 		buttons.add(help);
-
+		buttons.add(simpleAi);
+		buttons.add(middleAi);
+		buttons.add(smartAi);
+		
 		return buttons;
 	}
 
@@ -95,6 +102,11 @@ public class GUI extends Application {
 			lizard = new Button();
 			spock = new Button();
 			help = new Button("Help");
+			
+			simpleAi = new Button("Easy Ai");
+			middleAi = new Button("Normal Ai");
+			smartAi = new Button("Hard Ai");
+			
 			playerName = new Label();
 			playerWin = new Label();
 			playerTotalMatches = new Label("Total");
@@ -108,7 +120,7 @@ public class GUI extends Application {
 			pane.setAlignment(Pos.CENTER);
 			pane.setHgap(10);
 			pane.setVgap(10);
-			pane.setGridLinesVisible(true);
+			//pane.setGridLinesVisible(true);
 			pane.setMinSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 
 			// grid system (column, row)
@@ -121,7 +133,10 @@ public class GUI extends Application {
 			pane.add(playerWin, 2, 6);
 			pane.add(playerTotalMatches, 3, 6);
 			pane.add(help, 6, 7);
-
+			pane.add(simpleAi, 1, 7);
+			pane.add(middleAi, 2, 7);
+			pane.add(smartAi, 3, 7);
+			
 			rock.getStyleClass().addAll("buttonClass", "buttonSize", "rock");
 			rock.setOnAction(e -> pressButton(0));
 
@@ -140,6 +155,15 @@ public class GUI extends Application {
 			help.getStyleClass().addAll("buttonClass", "mainButton");
 			help.setOnAction(e -> pressButton(5));
 
+			simpleAi.getStyleClass().addAll("aiButtonClass", "aiButtonSize");
+			simpleAi.setOnAction(e -> pressButton(6));
+			
+			middleAi.getStyleClass().addAll("aiButtonClass", "aiButtonSize");
+			middleAi.setOnAction(e -> pressButton(7));
+			
+			smartAi.getStyleClass().addAll("aiButtonClass", "aiButtonSize");
+			smartAi.setOnAction(e -> pressButton(8));
+			
 			Scene scene = new Scene(pane, WINDOW_WIDTH, WINDOW_HEIGHT);
 			scene.getStylesheets().add("style.css");
 			window.setScene(scene);

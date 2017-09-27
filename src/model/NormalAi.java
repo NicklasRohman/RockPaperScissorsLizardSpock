@@ -4,11 +4,11 @@ package model;
  * @author Nicklas
  *	this Ai class will return a random answer from smartAi and Ai 
  */
-public class MiddleAi extends AbstractAi {
+public class NormalAi extends AbstractAi {
 
-	static MiddleAi middleAi;
+	static NormalAi normalAi;
 
-	private MiddleAi() {
+	private NormalAi() {
 	}
 
 	/**
@@ -16,25 +16,26 @@ public class MiddleAi extends AbstractAi {
 	 * 
 	 * @return ai
 	 */
-	public static MiddleAi getInstance() {
-		if (middleAi == null) {
-			middleAi = new MiddleAi();
+	public static NormalAi getInstance() {
+		if (normalAi == null) {
+			normalAi = new NormalAi();
 		}
-		return middleAi;
+		return normalAi;
 	}
 
 
 	@Override
 	public String theAnswer() {
-		MostOfClass moc = new MostOfClass();
 		int result = RandomClass.randomMethod(1, 2);
 		if (result == 1) {
-			Ai ai = Ai.getInstance();
+			EasyAi ai = EasyAi.getInstance();
 			return ai.theAnswer();
 			
 		}
 		else {
-			SmartAi smartAi = SmartAi.getInstance();
+			HardAi smartAi = HardAi.getInstance();
 			return smartAi.getAnswer();
 		}
-	}}
+	}
+
+	}

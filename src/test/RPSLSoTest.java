@@ -3,11 +3,11 @@ package test;
 
 import org.junit.Before;
 import org.junit.Test;
-import model.Ai;
+import model.EasyAi;
 
 public class RPSLSoTest {
 
-	Ai ai;
+	EasyAi ai;
 	@Before
 	public void startTest(){
 		//ai = new Ai();

@@ -3,14 +3,14 @@ package model;
 /**
  * @author Nicklas This class should only contain things whit the simple Ai player.
  */
-public class Ai extends AbstractAi {
+public class EasyAi extends AbstractAi {
 
-	private String name = "Simple Ai";
+	private String name = "Ai";
 	private String answer;
 
-	static Ai ai;
+	static EasyAi ai;
 
-	private Ai() {
+	private EasyAi() {
 	}
 
 	/**
@@ -18,9 +18,9 @@ public class Ai extends AbstractAi {
 	 * 
 	 * @return ai
 	 */
-	public static Ai getInstance() {
+	public static EasyAi getInstance() {
 		if (ai == null) {
-			ai = new Ai();
+			ai = new EasyAi();
 		}
 		return ai;
 	}
@@ -60,23 +60,23 @@ public class Ai extends AbstractAi {
 	 * @return a answer against the player
 	 */
 	public String theAnswer() {
-		MostOfClass moc = new MostOfClass();
-		int rock = humenPlayer.getAnswerRock();
-		int scissors = humenPlayer.getAnswerScissors();
-		int paper = humenPlayer.getAnswerPaper();
-		int lizard = humenPlayer.getAnswerLizard();
-		int spock = humenPlayer.getAnswerSpock();
+		
+		int rock = humanPlayer.getAnswerRock();
+		int scissors = humanPlayer.getAnswerScissors();
+		int paper = humanPlayer.getAnswerPaper();
+		int lizard = humanPlayer.getAnswerLizard();
+		int spock = humanPlayer.getAnswerSpock();
 
 		if ((rock > scissors) && (rock > paper) && (rock > lizard) && (rock > spock)) {
-			answer = moc.mostRock();
+			answer = mostRock();
 		} else if ((scissors > rock) && (scissors > paper) && (scissors > lizard) && (scissors > spock)) {
-			answer = moc.mostScissors();
+			answer = mostScissors();
 		} else if ((paper > rock) && (paper > scissors) && (paper > lizard) && (paper > spock)) {
-			answer = moc.mostPaper();
+			answer = mostPaper();
 		} else if ((lizard > rock) && (lizard > scissors) && (lizard > paper) && (lizard > spock)) {
-			answer = moc.mostLizard();
+			answer = mostLizard();
 		} else if ((spock > rock) && (spock > scissors) && (spock > paper) && (spock > lizard)) {
-			answer = moc.mostSpock();
+			answer = mostSpock();
 		} else {
 			switch (RandomClass.randomMethod(1, 5)) {
 			case 1:
@@ -95,7 +95,5 @@ public class Ai extends AbstractAi {
 		}
 		return answer;
 	}
-
-	
 
 }

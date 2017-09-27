@@ -5,17 +5,16 @@ package model;
  * @author Nicklas class for the smart AI, it will take the answer from player
  *         before making any move.
  */
-public class SmartAi extends AbstractAi {
+public class HardAi extends AbstractAi {
 
 	String humanAnswer;
 	String aiName;
 	String aiAnswer;
 
-	MostOfClass moc = new MostOfClass();
 
-	static SmartAi smartAi;
+	static HardAi hardAi;
 
-	private SmartAi() {
+	private HardAi() {
 	}
 
 	/**
@@ -23,30 +22,27 @@ public class SmartAi extends AbstractAi {
 	 * 
 	 * @return ai
 	 */
-	public static SmartAi getInstance() {
-		if (smartAi == null) {
-			smartAi = new SmartAi();
+	public static HardAi getInstance() {
+		if (hardAi == null) {
+			hardAi = new HardAi();
 		}
-		return smartAi;
+		return hardAi;
 	}
 
-	
-	
-	
 	@Override
 	public String theAnswer() {
-		humanAnswer = humenPlayer.getAnswer();
+		humanAnswer = humanPlayer.getAnswer();
 
 		if (humanAnswer.equalsIgnoreCase("rock")) {
-			aiAnswer = moc.mostRock();
+			aiAnswer = mostRock();
 		} else if (humanAnswer.equalsIgnoreCase("paper")) {
-			aiAnswer = moc.mostPaper();
+			aiAnswer = mostPaper();
 		} else if (humanAnswer.equalsIgnoreCase("scissors")) {
-			aiAnswer = moc.mostScissors();
+			aiAnswer = mostScissors();
 		} else if (humanAnswer.equalsIgnoreCase("lizard")) {
-			aiAnswer = moc.mostLizard();
+			aiAnswer = mostLizard();
 		} else if (humanAnswer.equalsIgnoreCase("spock")) {
-			aiAnswer = moc.mostSpock();
+			aiAnswer = mostSpock();
 		}
 
 		return aiAnswer;

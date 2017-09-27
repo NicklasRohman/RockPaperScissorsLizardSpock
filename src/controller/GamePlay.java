@@ -1,6 +1,7 @@
 package controller;
 
-import model.Ai;
+import model.EasyAi;
+import model.AbstractAi;
 import model.ButtonPressedEvent;
 import model.ButtonPressedListener;
 import model.Human;
@@ -11,18 +12,18 @@ import view.ResultBox;
 
 /**
  * 
- * @author Nicklas
- *	This class starts the game and is the controller over the game.
+ * @author Nicklas This class starts the game and is the controller over the
+ *         game.
  */
 public class GamePlay implements ButtonPressedListener {
 
-	public static GamePlay gp = null;
-	private static GUI gui;
+	static GamePlay gp = null;
+	static GUI gui;
 
 	// PlayerFactory playerFactory = new PlayerFactory();
 	// Human human = new Human();
 	static Human human;
-	static Ai ai;
+	static EasyAi ai;
 
 	private GamePlay() {
 	}
@@ -39,7 +40,9 @@ public class GamePlay implements ButtonPressedListener {
 
 	/**
 	 * Main method starts up the application
-	 * @param args = null
+	 * 
+	 * @param args
+	 *            = null
 	 */
 	public static void main(String[] args) {
 
@@ -59,9 +62,9 @@ public class GamePlay implements ButtonPressedListener {
 		databas.lookForPlayer(name);
 
 	}
-	
+
 	/**
-	 * method that will show how is the winner 
+	 * method that will show how is the winner
 	 */
 	public void resultGame() {
 		ResultBox resultbox = ResultBox.getInstance();
@@ -79,13 +82,12 @@ public class GamePlay implements ButtonPressedListener {
 	@Override
 	public void buttonPressed(ButtonPressedEvent event) {
 		human = Human.getInstance();
-		ai = Ai.getInstance();
-//		PlayerFactory playerFactory = new PlayerFactory();
-//		PlayerInterface human2 = playerFactory.getPlayer("");
-//		System.out.println(human2);
-
+		ai = EasyAi.getInstance();
+		AbstractAi aiLevel;
+		
 		switch (event.getPressedButton()) {
 		case 0:
+			whatAiLevel();
 			ai.aiCalculateAnswer();
 			human.setAnswerRock(human.getAnswerRock() + 1);
 			human.setHumanAnswer("rock");
@@ -118,6 +120,31 @@ public class GamePlay implements ButtonPressedListener {
 		case 5:
 			helpButton();
 			break;
+		case 6:
+			aiLevel = new AbstractAi() {
+				@Override
+				public void setAiLevel(int aiLevel) {
+					super.setAiLevel(1);
+				}
+			};
+			break;
+		case 7:
+			aiLevel = new AbstractAi() {
+				@Override
+				public void setAiLevel(int aiLevel) {
+					super.setAiLevel(2);
+				}
+			};
+			
+			break;
+		case 8:
+			aiLevel = new AbstractAi() {
+				@Override
+				public void setAiLevel(int aiLevel) {
+					super.setAiLevel(3);
+				}
+			};
+						break;
 
 		default:
 			System.out.println("No index");
@@ -157,14 +184,25 @@ public class GamePlay implements ButtonPressedListener {
 		}
 	}
 
-	
 	/**
 	 * Show the helpBox
 	 */
-	public void helpButton() {
+	private void helpButton() {
 		HelpBox help = HelpBox.getInstance();
 		help.display();
-	} 
+	}
 
+	public void whatAiLevel(){
+		int aiLevelMove;
+		AbstractAi abstractAi = new AbstractAi() {
+			
+		};
+		if (true) {
+			
+		}
+	}
+	
+	
 }
+
 

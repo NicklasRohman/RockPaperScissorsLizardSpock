@@ -73,8 +73,9 @@ public class DataBas {
 	}
 
 	private void createPlayer(String newPlayerName) {
-
+		human = Human.getInstance();
 		try {
+			human.setName(newPlayerName);
 			driverManagerSetup();
 			stmt.executeUpdate("INSERT INTO PLAYERS VALUES('" + newPlayerName + "',0,0,0,0,0);");
 

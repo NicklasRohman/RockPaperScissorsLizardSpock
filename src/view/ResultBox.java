@@ -12,7 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import model.Ai;
+import model.EasyAi;
 import model.Human;
 
 /**
@@ -50,7 +50,7 @@ public class ResultBox {
 	public boolean display(String theWinnerIs) {
 		Stage alertWindow = new Stage();
 		Human human = Human.getInstance();
-		Ai ai = Ai.getInstance();
+		EasyAi ai = EasyAi.getInstance();
 		alertWindow.initModality(Modality.APPLICATION_MODAL);
 		alertWindow.setWidth(WINDOW_WIDTH);
 		alertWindow.setHeight(WINDOW_HEIGHT);
@@ -97,11 +97,11 @@ public class ResultBox {
 
 		pane.add(playerLabel, 0, 0);
 		pane.add(aiLabel, 4, 0);
-		pane.add(playerPicLabel, 0, 3);
-		pane.add(aiPicLabel, 4, 3);
+		pane.add(playerPicLabel, 1, 3);
+		pane.add(aiPicLabel, 3, 3);
 		pane.add(resultLabel, 2, 5);
 		pane.add(okButton, 2, 6);
-
+		
 		Scene scene = new Scene(pane, WINDOW_WIDTH, WINDOW_HEIGHT);
 		scene.getStylesheets().add("style.css");
 		alertWindow.setScene(scene);

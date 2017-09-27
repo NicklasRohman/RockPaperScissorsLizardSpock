@@ -11,11 +11,5 @@ public abstract class Players {
 		return null;
 	}
 	public void setAnswer() {
-	}
-	public void setName(String name) {
-	}
-	public String getName() {
-		return null;
-	}
-	
+	}	
 }

@@ -84,8 +84,6 @@ public class NameBox {
 		alertWindow.setScene(scen);
 		alertWindow.showAndWait(); 
 	
-		String result = nameInput.getText().toUpperCase()+"";
-		
-		return result;
+		return nameInput.getText().toUpperCase().toString();
 	}
 }
