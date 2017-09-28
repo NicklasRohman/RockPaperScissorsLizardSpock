@@ -4,15 +4,17 @@ package model;
  * 
  * @author Nicklas abstract class for all the Ai we will have
  */
-public abstract class AbstractAi extends Players implements AiAlgoritms , IRandomMethods{
-	
-	int aiLevel;
+public abstract class AbstractAi extends Players implements AiAlgoritms , IRandomMethods, INewAi{
 	
 	public String theAnswer() {
 		return null;
 	}
 
 	Human humanPlayer = Human.getInstance();
+	/**
+	 * Human have pushed rock mostly 
+	 * @return paper or spock
+	 */
 	public String mostRock() {
 		if (humanPlayer.getAnswerPaper() == humanPlayer.getAnswerSpock()) {
 			switch (randomMethod(1, 2)) {
@@ -31,6 +33,10 @@ public abstract class AbstractAi extends Players implements AiAlgoritms , IRando
 		}
 	}
 
+	/**
+	 * Human have pushed paper mostly 
+	 * @return scissors or lizard
+	 */
 	public String mostPaper() {
 		if (humanPlayer.getAnswerScissors() == humanPlayer.getAnswerLizard()) {
 			switch (randomMethod(1, 2)) {
@@ -51,6 +57,10 @@ public abstract class AbstractAi extends Players implements AiAlgoritms , IRando
 
 	}
 
+	/**
+	 * Human have pushed Spock mostly 
+	 * @return paper or lizard
+	 */
 	public String mostSpock() {
 		if (humanPlayer.getAnswerLizard() == humanPlayer.getAnswerPaper()) {
 			switch (randomMethod(1, 2)) {
@@ -70,6 +80,10 @@ public abstract class AbstractAi extends Players implements AiAlgoritms , IRando
 		}
 	}
 
+	/**
+	 * Human have pushed lizard mostly 
+	 * @return scissors or rock
+	 */
 	public String mostLizard() {
 		if (humanPlayer.getAnswerRock() == humanPlayer.getAnswerScissors()) {
 			switch (randomMethod(1, 2)) {
@@ -89,6 +103,10 @@ public abstract class AbstractAi extends Players implements AiAlgoritms , IRando
 
 	}
 
+	/**
+	 * Human have pushed scissors mostly 
+	 * @return rock or Spock
+	 */
 	public String mostScissors() {
 		if (humanPlayer.getAnswerSpock() == humanPlayer.getAnswerRock()) {
 			switch (randomMethod(1, 2)) {
@@ -108,21 +126,14 @@ public abstract class AbstractAi extends Players implements AiAlgoritms , IRando
 		}
 	}
 
+	/**
+	 * random number between min and max
+	 * returns a integer
+	 */
 	@Override
 	public int randomMethod(int min, int max) {
 			int test = rand.nextInt(max + 1 - min) + min;
 			return test;
 		}
-	
-	
-	/**
-	 * @return the aiLevel
-	 */
-	public int getAiLevel() {
-		return aiLevel;
-	}
-	
-	
-
 
 }

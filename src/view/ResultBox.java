@@ -4,16 +4,12 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import model.EasyAi;
 import model.Human;
+import model.INewAi;
 
 /**
  * @author Nicklas Its a singleton class Handles GUI for the popup window when
@@ -21,7 +17,7 @@ import model.Human;
  */
 public class ResultBox {
 
-	final int WINDOW_WIDTH = 1100;
+	final int WINDOW_WIDTH = 1300;
 	final int WINDOW_HEIGHT = 1000;
 
 	static ResultBox resultBox;
@@ -43,14 +39,14 @@ public class ResultBox {
 	 * The method display popup window
 	 * 
 	 * @param theWinnerIs
+	 * @param ai 
 	 * @param message
 	 *            What it should stand on the label
 	 * @return boolean answer
 	 */
-	public boolean display(String theWinnerIs) {
+	public boolean display(String theWinnerIs, INewAi ai) {
 		Stage alertWindow = new Stage();
 		Human human = Human.getInstance();
-		EasyAi ai = EasyAi.getInstance();
 		alertWindow.initModality(Modality.APPLICATION_MODAL);
 		alertWindow.setWidth(WINDOW_WIDTH);
 		alertWindow.setHeight(WINDOW_HEIGHT);
@@ -60,7 +56,12 @@ public class ResultBox {
 		Label aiLabel = new Label();
 		Label playerPicLabel = new Label();
 		Label aiPicLabel = new Label();
-		Label resultLabel = new Label("ResultLabel");
+		Label resultLabel = new Label();
+		Label leftSpaceLabel = new Label();
+		Label rightSpaceLabel = new Label();
+		
+		leftSpaceLabel.getStyleClass().add("spaceLabel");
+		rightSpaceLabel.getStyleClass().add("spaceLabel");
 		
 		playerLabel.getStyleClass().add("resultBox");
 		playerPicLabel.getStyleClass().add("resultLabel");
@@ -70,14 +71,13 @@ public class ResultBox {
 		
 		aiLabel.getStyleClass().add("resultBox");
 		aiPicLabel.getStyleClass().add("resultLabel");
-		aiLabel.setText(ai.getName());
+		aiLabel.setText("Ai");
 		aiPicLabel.getStyleClass().add(ai.getAiAnswer());
 		aiPicLabel.getStyleClass().add("resultSize");
 
-		
 		resultLabel.getStyleClass().add("resultBox");
-		resultLabel.setText("The winner is: " + theWinnerIs);
-
+		resultLabel.setText("The winner is: \n" + theWinnerIs);
+		
 		Button okButton = new Button("OK");
 
 		resultLabel.setAlignment(Pos.CENTER);
@@ -93,15 +93,17 @@ public class ResultBox {
 		pane.setHgap(30);
 		pane.setVgap(30);
 		pane.getStyleClass().add("borderPane");
-		pane.setGridLinesVisible(true);
-
-		pane.add(playerLabel, 0, 0);
-		pane.add(aiLabel, 4, 0);
+		//pane.setGridLinesVisible(true);
+		
+		// grid system (column, row)
+		pane.add(leftSpaceLabel, 0, 0);
+		pane.add(playerLabel, 1, 0);
+		pane.add(aiLabel, 3, 0);
 		pane.add(playerPicLabel, 1, 3);
 		pane.add(aiPicLabel, 3, 3);
 		pane.add(resultLabel, 2, 5);
 		pane.add(okButton, 2, 6);
-		
+		pane.add(rightSpaceLabel, 4, 0);
 		Scene scene = new Scene(pane, WINDOW_WIDTH, WINDOW_HEIGHT);
 		scene.getStylesheets().add("style.css");
 		alertWindow.setScene(scene);

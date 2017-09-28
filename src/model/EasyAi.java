@@ -3,28 +3,14 @@ package model;
 /**
  * @author Nicklas This class should only contain things whit the Easy Ai player.
  */
-public class EasyAi extends AbstractAi {
+public class EasyAi extends AbstractAi implements INewAi {
 
 	private String name = "Ai";
 	private String answer;
-	private int aiLevel = 1;
-	static EasyAi ai;
-
-	private EasyAi() {
-	}
-
+	
 	/**
-	 * Singleton pattern, it can only be one Ai player.
-	 * 
-	 * @return ai
+	 * Calculating a answer
 	 */
-	public static EasyAi getInstance() {
-		if (ai == null) {
-			ai = new EasyAi();
-		}
-		return ai;
-	}
-
 	public void aiCalculateAnswer() {
 		this.answer = theAnswer();
 	}
@@ -60,7 +46,6 @@ public class EasyAi extends AbstractAi {
 	 * @return a answer against the player
 	 */
 	public String theAnswer() {
-		
 		int rock = humanPlayer.getAnswerRock();
 		int scissors = humanPlayer.getAnswerScissors();
 		int paper = humanPlayer.getAnswerPaper();
@@ -97,10 +82,11 @@ public class EasyAi extends AbstractAi {
 	}
 
 	/**
-	 * @return the aiLevel
+	 * Sends back the AiLevel
 	 */
+	@Override
 	public int getAiLevel() {
-		return aiLevel;
+		return 1;
 	}
 
 }

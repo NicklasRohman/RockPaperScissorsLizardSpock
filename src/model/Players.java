@@ -7,9 +7,5 @@ package model;
  */
 public abstract class Players {
 	
-	public String getAnswer(){
-		return null;
-	}
-	public void setAnswer() {
-	}	
+		
 }

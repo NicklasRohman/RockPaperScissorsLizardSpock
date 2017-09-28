@@ -2,38 +2,20 @@ package model;
 
 /**
  * 
- * @author Nicklas 
- * class for the smart AI, it will take the answer from player
- * before making any move.
+ * @author Nicklas class for the smart AI, it will take the answer from player
+ *         before making any move.
  */
-public class HardAi extends AbstractAi {
+public class HardAi extends AbstractAi implements INewAi{
 
 	String humanAnswer;
-	String aiName;
 	String aiAnswer;
 
-
-	static HardAi hardAi;
-
-	private HardAi() {
-	}
-
 	/**
-	 * Singleton pattern, it can only be one Ai player.
-	 * 
-	 * @return ai
+	 * makes a decision and return a answer
 	 */
-	public static HardAi getInstance() {
-		if (hardAi == null) {
-			hardAi = new HardAi();
-		}
-		return hardAi;
-	}
-
 	@Override
 	public String theAnswer() {
-		humanAnswer = humanPlayer.getAnswer();
-
+		humanAnswer = humanPlayer.getHumanAnswer();
 		if (humanAnswer.equalsIgnoreCase("rock")) {
 			aiAnswer = mostRock();
 		} else if (humanAnswer.equalsIgnoreCase("paper")) {
@@ -48,4 +30,29 @@ public class HardAi extends AbstractAi {
 
 		return aiAnswer;
 	}
+	
+	/**
+	 * Sends back the AiLevel
+	 */
+	@Override
+	public int getAiLevel() {
+		return 3;
+	}
+
+	/**
+	 * Calculating a answer
+	 */
+	@Override
+	public void aiCalculateAnswer() {
+		this.aiAnswer = theAnswer();
+	}
+
+	/**
+	 * return the aiAnswer
+	 */
+	@Override
+	public String getAiAnswer() {
+		return this.aiAnswer;
+	}
+
 }

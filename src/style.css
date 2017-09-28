@@ -91,8 +91,8 @@
 }
 
 .resultLabel {
-	-fx-pref-width: 900px;
-	-fx-pref-height: 700px;
+	-fx-pref-width: 600px;
+	-fx-pref-height: 400px;
 	-fx-background-color: skyblue, derive(skyblue, 25%);
 	-fx-background-insets: -20, -10;
 	-fx-background-position: center;
@@ -101,9 +101,9 @@
 }
 
 .resultBox{
-	-fx-background-color: gray;
 	-fx-pref-widht: 400px;
-	-fx-pref-hight:	200px;
+	-fx-text-alignment:center;
+	-fx-background-color: skyblue;
 }
 .resultSize {
 	-fx-pref-width: 400px;
@@ -115,4 +115,7 @@
 	-fx-background-radius: 10px;
 	-fx-background-insets: -20, -10;
 }
-
+.spaceLabel{
+	-fx-pref-width: 50px;
+	-fx-pref-height:20px;
+}

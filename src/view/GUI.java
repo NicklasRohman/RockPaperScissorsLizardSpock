@@ -40,7 +40,7 @@ public class GUI extends Application {
 	static Label playerTotalMatches;
 
 	private List<ButtonPressedListener> buttonPressedListeners = new ArrayList<>();
-
+	
 	public void addButtonPressedListener(ButtonPressedListener buttonPressedListener) {
 		buttonPressedListeners.add(buttonPressedListener);
 
@@ -56,6 +56,10 @@ public class GUI extends Application {
 		launch(new String[] {});
 	}
 
+	/**
+	 * adds all the buttons in list
+	 * @return list of buttons
+	 */ 
 	public List<Button> getButtons() {
 		buttons.add(rock);
 		buttons.add(paper);
@@ -70,6 +74,10 @@ public class GUI extends Application {
 		return buttons;
 	}
 
+	/**
+	 * 
+	 * @param index
+	 */
 	public void pressButton(int index) {
 
 		for (ButtonPressedListener listener : buttonPressedListeners) {
@@ -77,6 +85,9 @@ public class GUI extends Application {
 		}
 	}
 
+	/**
+	 * Show the GUI
+	 */
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 

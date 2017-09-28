@@ -1,10 +1,10 @@
 package controller;
 
-import model.EasyAi;
-import model.AbstractAi;
+import model.AiFactory;
 import model.ButtonPressedEvent;
 import model.ButtonPressedListener;
 import model.Human;
+import model.INewAi;
 import view.GUI;
 import view.HelpBox;
 import view.NameBox;
@@ -20,10 +20,15 @@ public class GamePlay implements ButtonPressedListener {
 	static GamePlay gp = null;
 	static GUI gui;
 
-	// PlayerFactory playerFactory = new PlayerFactory();
-	// Human human = new Human();
 	static Human human;
-	static EasyAi ai;
+
+	int ailevel = 1;
+	int AiIntAnswer;
+
+	AiFactory aiFactory = new AiFactory();
+	INewAi easyAi = aiFactory.makingAAI("Easy");
+	INewAi normalAi = aiFactory.makingAAI("Normal");
+	INewAi hardAi = aiFactory.makingAAI("hard");
 
 	private GamePlay() {
 	}
@@ -69,11 +74,16 @@ public class GamePlay implements ButtonPressedListener {
 	public void resultGame() {
 		ResultBox resultbox = ResultBox.getInstance();
 		int HumanIntAnswer = makeAnswerToIntValue(human.getHumanAnswer());
-		int AiIntAnswer = makeAnswerToIntValue(ai.getAiAnswer());
 		String theWinnerIs = calculateHowWins(HumanIntAnswer, AiIntAnswer);
 
 		gui.labelText();
-		resultbox.display(theWinnerIs);
+		if (ailevel == 3) {
+			resultbox.display(theWinnerIs, hardAi);
+		} else if (ailevel == 2) {
+			resultbox.display(theWinnerIs, normalAi);
+		} else {
+			resultbox.display(theWinnerIs, easyAi);
+		}
 	}
 
 	/**
@@ -82,63 +92,66 @@ public class GamePlay implements ButtonPressedListener {
 	@Override
 	public void buttonPressed(ButtonPressedEvent event) {
 		human = Human.getInstance();
-		ai = EasyAi.getInstance();
-		AbstractAi aiLevel;
-		
-		
-		
+
 		switch (event.getPressedButton()) {
 		case 0:
-			whatAiLevel();
-			ai.aiCalculateAnswer();
+
 			human.setAnswerRock(human.getAnswerRock() + 1);
 			human.setHumanAnswer("rock");
+			whatAiLevel(ailevel);
 			resultGame();
 			break;
 		case 1:
-			ai.aiCalculateAnswer();
 			human.setAnswerPaper(human.getAnswerPaper() + 1);
 			human.setHumanAnswer("paper");
+			whatAiLevel(ailevel);
 			resultGame();
 			break;
 		case 2:
-			ai.aiCalculateAnswer();
 			human.setAnswerScissors(human.getAnswerScissors() + 1);
 			human.setHumanAnswer("scissors");
+			whatAiLevel(ailevel);
 			resultGame();
 			break;
 		case 3:
-			ai.aiCalculateAnswer();
 			human.setAnswerLizard(human.getAnswerLizard() + 1);
 			human.setHumanAnswer("lizard");
+			whatAiLevel(ailevel);
 			resultGame();
 			break;
 		case 4:
-			ai.aiCalculateAnswer();
 			human.setAnswerSpock(human.getAnswerSpock() + 1);
 			human.setHumanAnswer("spock");
+			whatAiLevel(ailevel);
 			resultGame();
 			break;
 		case 5:
-			helpButton();
+			HelpBox help = HelpBox.getInstance();
+			help.display();
 			break;
 		case 6:
+			ailevel = easyAi.getAiLevel();
 			break;
 		case 7:
+			ailevel = normalAi.getAiLevel();
 			break;
 		case 8:
+			ailevel = hardAi.getAiLevel();
 			break;
-
 		default:
 			System.out.println("No index");
-
 			break;
 		}
 
 	}
 
+	/**
+	 * Method how calculate how will win
+	 * @param humanIntAnswer
+	 * @param aiIntAnswer
+	 * @return
+	 */
 	private String calculateHowWins(int humanIntAnswer, int aiIntAnswer) {
-
 		int result = (5 + humanIntAnswer - aiIntAnswer) % 5;
 		if ((result == 1) || result == 3) {
 			human.setWin(human.getWin() + 1);
@@ -152,8 +165,12 @@ public class GamePlay implements ButtonPressedListener {
 		}
 	}
 
+	/**
+	 * This method convert the answer into a integer
+	 * @param answer from one of the player
+	 * @return a integer between 0-4 dependent on answer
+	 */
 	private int makeAnswerToIntValue(String answer) {
-
 		if (answer.equalsIgnoreCase("rock")) {
 			return 0;
 		} else if (answer.equalsIgnoreCase("paper")) {
@@ -168,32 +185,21 @@ public class GamePlay implements ButtonPressedListener {
 	}
 
 	/**
-	 * Show the helpBox
+	 * make a answer based on Ai level
+	 * @param level of Ai
 	 */
-	private void helpButton() {
-		HelpBox help = HelpBox.getInstance();
-		help.display();
+	public void whatAiLevel(int level) {
+		if (level == 3) {
+			hardAi.aiCalculateAnswer();
+			AiIntAnswer = makeAnswerToIntValue(hardAi.getAiAnswer());
+		} else if (level == 2) {
+			normalAi.aiCalculateAnswer();
+			AiIntAnswer = makeAnswerToIntValue(normalAi.getAiAnswer());
+		} else {
+			easyAi.aiCalculateAnswer();
+			AiIntAnswer = makeAnswerToIntValue(easyAi.getAiAnswer());
+		}
+
 	}
 
-	public void whatAiLevel(){
-		int aiLevelMove;
-		AbstractAi aiLvl = new AbstractAi() {@Override
-		public int getAiLevel() {
-			
-			return super.getAiLevel();
-		}
-		};
-		
-		
-		
-		
-		
-		if (true) {
-			
-		}
-	}
-	
-	
 }
-
-
