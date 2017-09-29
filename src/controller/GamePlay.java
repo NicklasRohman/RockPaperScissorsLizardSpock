@@ -19,7 +19,6 @@ public class GamePlay implements ButtonPressedListener {
 
 	static GamePlay gp = null;
 	static GUI gui;
-
 	static Human human;
 
 	int ailevel = 1;

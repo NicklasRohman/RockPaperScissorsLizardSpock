@@ -9,8 +9,8 @@ public class NormalAi extends AbstractAi implements INewAi{
 	String AiAnswer;
 	
 	AiFactory aiFactory = new AiFactory();
-	INewAi eai2 = aiFactory.makingAAI("Easy");
-	INewAi hai2 = aiFactory.makingAAI("hard");
+	INewAi easyAi = aiFactory.makingAAI("Easy");
+	INewAi hardAi = aiFactory.makingAAI("hard");
 	
 	
 	/**
@@ -20,12 +20,12 @@ public class NormalAi extends AbstractAi implements INewAi{
 	public String theAnswer() {
 		int result = randomMethod(1, 2);
 		if (result == 1) {
-			eai2.aiCalculateAnswer();
-			return eai2.getAiAnswer();
+			easyAi.aiCalculateAnswer();
+			return easyAi.getAiAnswer();
 		}
 		else {
-			hai2.aiCalculateAnswer();
-			return hai2.getAiAnswer();
+			hardAi.aiCalculateAnswer();
+			return hardAi.getAiAnswer();
 		}
 	}
 

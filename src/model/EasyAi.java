@@ -5,7 +5,6 @@ package model;
  */
 public class EasyAi extends AbstractAi implements INewAi {
 
-	private String name = "Ai";
 	private String answer;
 	
 	/**
@@ -16,29 +15,12 @@ public class EasyAi extends AbstractAi implements INewAi {
 	}
 
 	/**
-	 * gets the name of Ai
-	 * 
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
 	 * gets what the Ai answered
 	 * 
 	 * @return the aiAnswer
 	 */
 	public String getAiAnswer() {
 		return answer;
-	}
-
-	/**
-	 * @param aiAnswer
-	 *            the aiAnswer to set
-	 */
-	public void setAiAnswer(String aiAnswer) {
-		this.answer = aiAnswer;
 	}
 
 	/**

@@ -7,8 +7,8 @@ package model;
  */
 public class HardAi extends AbstractAi implements INewAi{
 
-	String humanAnswer;
-	String aiAnswer;
+	private String humanAnswer;
+	private String aiAnswer;
 
 	/**
 	 * makes a decision and return a answer

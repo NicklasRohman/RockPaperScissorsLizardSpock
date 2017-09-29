@@ -4,12 +4,8 @@ package model;
  * 
  * @author Nicklas abstract class for all the Ai we will have
  */
-public abstract class AbstractAi extends Players implements AiAlgoritms , IRandomMethods, INewAi{
+public abstract class AbstractAi extends Players implements AiAlgoritms , IRandomMethods{
 	
-	public String theAnswer() {
-		return null;
-	}
-
 	Human humanPlayer = Human.getInstance();
 	/**
 	 * Human have pushed rock mostly 
