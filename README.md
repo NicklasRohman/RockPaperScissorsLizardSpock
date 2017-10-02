@@ -1,13 +1,13 @@
 # RockPaperScissorsLizardSpock
 Nicklas Roman SJK16G Systemutveckling Java
 
-Its a Rock,Paper,Scissors,Lizard and Spock game. Player writes his/her name and it will look in the database if the name already exist, if it do exist it will load player record, if not create a new player.
+Its a Rock,Paper,Scissors,Lizard and Spock game. Player writes his/her name and it will look in the database if the name already exist, if it do exist it will load player record, if not create a new player. And I'm using a local H2 database.    
 
 Playing the game:
 Player press Rock,Paper,Scissors,Lizard or Spock button. The Ai will make a small calculating and try to counter the players move. 
 Depending on what the player has chosen for AI level , it makes some different calculations.
 
-The it will show how is the winner that round.
+Then it will show how is the winner that round.
 
 Help button will only show what takes what.
 when exiting game the game will first save players record.
